@@ -1,1266 +1,1648 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تُحْفَةُ الْبَارِي</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0D2137">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    <style>
-        /* ===== CSS VARIABLES ===== */
-        :root {
-            --primary:       #0D2137;
-            --primary-dark:  #0A1628;
-            --primary-light: #1A3A5C;
-            --accent:        #E8D5A3;
-            --accent2:       #C9B070;
-            --nav-inactive:  #5A84A8;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" id="themeMetaColor" content="#0f2318">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="مکتبہ شافعیہ">
+<meta name="description" content="مکتبہ شافعیہ — شعبۂ تحقیق دار العلوم تلوجہ">
+<title>مکتبہ شافعیہ</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+/* ── FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+@font-face{font-family:'JameelNastaleeq';src:url('jameel.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'AlQalam';src:url('alqalam.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'Lotus';src:url('lotus.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'TradArab';src:url('tradarab.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'NoorehIra';src:url('noorehira.ttf') format('truetype');font-display:swap}
 
-            --bg:            #0F1E2E;
-            --card-bg:       #0A1C2E;
-            --drawer-bg:     #0A1628;
-            --border:        #1A3A5C;
-            --arabic-color:  #E8D5A3;
-            --chapter-color: #E8D5A3;
-            --urdu-color:    #C8DFF0;
-            --sub-color:     #5A84A8;
-            --toc-ch:        #C8DFF0;
-            --toc-vol:       #5A84A8;
-            --action-bar:    #0D2137;
-            --btn-border:    #2A5070;
-            --btn-color:     #8AB4D4;
-
-            --urdu-size: 20px;
-            --arabic-size: 26px;
-        }
-        [data-theme="day"] {
-            --bg:            #F5EDD8;
-            --card-bg:       #FFF8E7;
-            --drawer-bg:     #EDE0C4;
-            --border:        #C9B48A;
-            --arabic-color:  #1A0F00;
-            --chapter-color: #8B4513;
-            --urdu-color:    #2A1A08;
-            --sub-color:     #8B6A3A;
-            --toc-ch:        #3D2B0F;
-            --toc-vol:       #8B6A3A;
-            --action-bar:    #EDE0C4;
-            --btn-border:    #C9B48A;
-            --btn-color:     #7A5A2A;
-        }
-
-        /* ===== FONTS ===== */
-        @font-face {
-            font-family: 'JameelNoori';
-            src: url('Jameel%20Noori%20Nastaleeq%20Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'AlQalam';
-            src: url('Al%20Qalam%20Quran%20Majeed%20Web%20Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-display: swap;
-        }
-
-        /* ===== RESET & BASE ===== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { 
-    height: 100%; 
-    height: 100dvh; /* نئے آئی فونز کے لیے */
-    width: 100%; 
-    overflow: hidden; 
+/* ── THEMES & VARIABLES ── */
+:root{
+  --gd:#0f2318;--gm:#1a3a2a;--gl:#2d5a3d;--ga:#4a9060;
+  --gold:#c9a84c;--glo:#e8c97a;
+  --bg:#f5f0e8;--bg2:#ede5d4;--bg3:#ffffff;
+  --tx:#1a1a0f;--tx2:#5a5a40;
+  --sh:0 2px 14px rgba(0,0,0,0.12);
+  --r:10px;
+  --fur:'JameelNastaleeq',serif;
+  --far:'Lotus', 'Traditional Arabic', serif; 
+  --fhd:'TradArab',serif;
+  --ur-fs: 17px; 
+  --ar-fs: 1.25em; 
+}
+[data-theme="dark"]{
+  --bg:#0e0e12;--bg2:#1a1a22;--bg3:#23232e;
+  --tx:#e8e0d0;--tx2:#8a8070;
+  --sh:0 2px 14px rgba(0,0,0,0.5);
+}
+[data-theme="night"]{
+  --bg:#1a1200;--bg2:#241a00;--bg3:#2e2200;
+  --tx:#f5dfa0;--tx2:#a08840;
+  --gd:#2e1e00;--gm:#3d2800;
+  --sh:0 2px 14px rgba(0,0,0,0.6);
 }
 
-/* آئی فون سفاری کا خاص فکس */
-html, body { 
-    height: 100%; 
-    height: 100dvh; 
-    width: 100%; 
-    overflow: hidden; 
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; border: 2px solid var(--bg2); }
+::-webkit-scrollbar-thumb:active { background: var(--ga); }
+
+body{
+  font-family:var(--fur);background:var(--bg);color:var(--tx);
+  direction:rtl;min-height:100vh;
+  font-size: var(--ur-fs); 
+  line-height:2;
+  overflow-x:hidden;transition:background .3s,color .3s;
 }
-        body {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            background: var(--bg);
-            color: var(--urdu-color);
-            transition: background 0.4s, color 0.4s;
-            display: flex;
-            flex-direction: column;
-        }
 
-        /* ===== SPLASH SCREEN ===== */
-        #splash {
-    position: fixed; inset: 0; z-index: 9999;
-    display: flex; flex-direction: column;
-    justify-content: space-between; align-items: center;
-    padding: 0;
-    overflow-y: auto; /* hidden کی جگہ auto کر دیا گیا ہے تاکہ چھوٹی اسکرین پر اسکرول ہو سکے */
-    background: var(--primary-dark);
-    transition: opacity 0.6s ease;
+/* 🔴 SPLASH SCREEN 🔴 */
+#splashScreen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0a1a10; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; font-family: 'Amiri', 'Jameel Noori Nastaleeq', serif;
+  transition: opacity 0.8s ease;
 }
-        .splash-top-band {
-            width: 100%;
-            background: linear-gradient(135deg, #0A1628 0%, #1A3A5C 100%);
-            padding: 5vh 24px 3vh;
-            display: flex; flex-direction: column; align-items: center;
-            gap: 6px;
-            border-bottom: 2px solid var(--accent2);
-        }
-        .splash-bismillah {
-            font-family: 'AlQalam', 'Amiri', serif;
-            font-size: clamp(24px, 6vw, 40px);
-            color: var(--accent);
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(232,213,163,0.4);
-            margin-bottom: 30px; /* بسم اللہ اور تحفۃ الباری کے درمیان فاصلہ بڑھا دیا گیا ہے */
-        }
-        .splash-book-title {
-            font-family: 'AlQalam', 'Amiri', serif;
-            font-size: clamp(42px, 9vw, 96px);
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1.1;
-            text-align: center;
-            text-shadow: 0 4px 24px rgba(232,213,163,0.3);
-        }
-        .splash-book-sub {
-            font-family: 'AlQalam', 'Amiri', serif;
-            font-size: clamp(18px, 3.5vw, 28px);
-            color: #8AB4D4;
-            letter-spacing: 1px;
-        }
-        .splash-divider {
-            width: 60%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent2), transparent);
-            margin: 4px 0;
-        }
-
-        .splash-middle {
-            flex: 1;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 10px;
-            padding: 16px 24px;
-            text-align: center;
-        }
-        .splash-label {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(16px, 4vw, 22px); /* لیبل کا سائز بھی تھوڑا بڑا کیا ہے */
-            color: var(--nav-inactive);
-        }
-        .splash-author {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(26px, 7vw, 40px); /* موبائل پر بہت نمایاں نظر آئے گا */
-            font-weight: 700;
-            color: #FFD700; /* تیز سنہری رنگ تاکہ دور سے چمکے */
-            line-height: 1.6;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.8);
-        }
-        .splash-madrasa {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(20px, 5vw, 30px); /* مدرسے کا نام بھی نمایاں کر دیا ہے */
-            color: #FFFFFF; /* خالص سفید رنگ */
-            font-weight: 700;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.8);
-        }
-        .splash-ornament {
-            font-family: 'AlQalam', 'Amiri', serif;
-            font-size: 28px;
-            color: var(--accent2);
-            line-height: 1;
-        }
-
-        .splash-bottom {
-    width: 100%;
-    background: linear-gradient(180deg, transparent, rgba(10,22,40,0.95));
-    /* env(safe-area-inset-bottom) آئی فون کی اسکرین کے حساب سے خودکار جگہ بناتا ہے */
-    padding: 20px 24px calc(30px + env(safe-area-inset-bottom)); 
-    display: flex; flex-direction: column; align-items: center;
-    gap: 10px;
-    flex-shrink: 0; /* یہ بٹن والے حصے کو سکڑنے اور غائب ہونے سے روکے گا */
+.spl-bg-layer {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a3a2a 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 50% 100%, #0f2318 0%, transparent 60%),
+              linear-gradient(160deg, #060f09 0%, #0e2016 40%, #091508 100%);
+  z-index: 0;
 }
-        .splash-dev-label {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(16px, 3.5vw, 22px); /* سائز بڑا کیا گیا ہے */
-            color: #C8DFF0; /* ہلکا چمکدار نیلا رنگ */
-            margin-bottom: 2px;
-        }
-        .splash-dev-name {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(24px, 6vw, 34px); /* نام کو بہت نمایاں کر دیا گیا ہے */
-            font-weight: 700;
-            color: #FFD700; /* مصنف کے نام جیسا تیز سنہری رنگ */
-            text-shadow: 0 3px 6px rgba(0,0,0,0.8); /* شیڈو کا اضافہ */
-            margin-bottom: 4px;
-        }
-        .splash-dev-place {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(18px, 4.5vw, 26px); /* مدرسے کا نام بھی بڑا کر دیا گیا ہے */
-            color: #FFFFFF; /* خالص سفید رنگ تاکہ دور سے نظر آئے */
-            font-weight: 700;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.8);
-            margin-bottom: 10px;
-        }
-        .btn-start {
-            margin-top: 4px;
-            background: linear-gradient(135deg, var(--accent2), #E8D5A3);
-            color: var(--primary-dark);
-            border: none;
-            padding: clamp(12px,2.5vh,18px) clamp(30px,8vw,60px);
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(18px, 3.5vw, 24px);
-            font-weight: 700;
-            border-radius: 14px;
-            cursor: pointer;
-            box-shadow: 0 6px 24px rgba(201,176,112,0.35);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative; overflow: hidden;
-        }
-        .btn-start::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        .btn-start:hover::before { transform: translateX(100%); }
-        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(201,176,112,0.45); }
-        .btn-start:active { transform: scale(0.97); }
+.spl-ornament-top, .spl-ornament-bottom {
+  position: absolute; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, #c9a84c, #e8c97a, #c9a84c, transparent);
+  z-index: 1; opacity: 0; animation: splFadeIn 0.8s ease 0.3s forwards;
+}
+.spl-ornament-top { top: 0; }
+.spl-ornament-bottom { bottom: 0; }
+.spl-ornament-top::after, .spl-ornament-bottom::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent); top: 6px;
+}
+.spl-ornament-bottom::after { top: -6px; }
+.spl-particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.spl-particle {
+  position: absolute; border-radius: 50%; background: #c9a84c; opacity: 0; animation: splFloat linear infinite;
+}
+.spl-center { position: relative; z-index: 10; text-align: center; padding: 40px 30px; width: 100%; max-width: 420px; }
+.spl-ring-outer {
+  width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.25);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 28px;
+  position: relative; opacity: 0; animation: splScaleIn 1s cubic-bezier(0.34,1.56,0.64,1) 0.2s forwards;
+}
+.spl-ring-outer::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.4); }
+.spl-ring-outer::after { content: ''; position: absolute; inset: 16px; border-radius: 50%; border: 2px solid rgba(201,168,76,0.6); animation: splSpin 8s linear infinite; }
+.spl-ring-inner {
+  width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle, #1a3a2a 0%, #0f2318 100%);
+  border: 1px solid rgba(201,168,76,0.5); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 30px rgba(201,168,76,0.15), inset 0 0 20px rgba(0,0,0,0.3); z-index: 1;
+}
+.spl-symbol { font-size: 2.2rem; color: #c9a84c; line-height: 1; }
+.spl-bismillah { font-size: 1.1rem; color: rgba(201,168,76,0.7); letter-spacing: 0.05em; margin-bottom: 20px; opacity: 0; animation: splSlideDown 0.8s ease 0.8s forwards; }
+.spl-divider { display: flex; align-items: center; gap: 12px; margin: 0 auto 20px; max-width: 260px; opacity: 0; animation: splFadeIn 0.6s ease 1s forwards; }
+.spl-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c9a84c); }
+.spl-line:first-child { background: linear-gradient(90deg, #c9a84c, transparent); }
+.spl-dot { width: 5px; height: 5px; border-radius: 50%; background: #c9a84c; box-shadow: 0 0 8px #c9a84c; }
+.spl-title { font-size: 2.8rem; font-weight: 700; color: #e8c97a; line-height: 1.2; margin-bottom: 6px; text-shadow: 0 0 40px rgba(232,201,122,0.3); opacity: 0; animation: splGlowIn 1s ease 1.1s forwards; letter-spacing: 0.02em; }
+.spl-sub-info { display: flex; flex-direction: column; gap: 8px; margin-top: 22px; }
+.spl-label { font-size: 0.78rem; color: rgba(201,168,76,0.5); letter-spacing: 0.1em; opacity: 0; animation: splFadeIn 0.5s ease 1.6s forwards; }
+.spl-text { font-size: 1.05rem; color: rgba(232,201,122,0.85); line-height: 1.6; opacity: 0; }
+.spl-text:nth-child(2) { animation: splSlideUp 0.7s ease 1.4s forwards; }
+.spl-text:nth-child(3) { animation: splSlideUp 0.7s ease 1.6s forwards; }
+.spl-inst { font-size: 1.15rem; font-weight: 700; color: #e8c97a; opacity: 0; animation: splSlideUp 0.7s ease 2s forwards; }
+.spl-dev { font-size: 1.15rem; font-weight: bold; color: #e8c97a; margin-top: 15px; opacity: 0; animation: splSlideUp 0.7s ease 2.2s forwards; }
+.spl-loader-wrap { margin-top: 36px; opacity: 0; animation: splFadeIn 0.5s ease 2.5s forwards; }
+.spl-loader-bar { width: 180px; height: 2px; background: rgba(201,168,76,0.15); border-radius: 2px; margin: 0 auto; overflow: hidden; }
+.spl-loader-fill { height: 100%; background: linear-gradient(90deg, #c9a84c, #e8c97a, #c9a84c); border-radius: 2px; width: 0%; animation: splLoad 3.5s ease 2.6s forwards; }
+.spl-loader-text { font-size: 0.68rem; color: rgba(201,168,76,0.4); margin-top: 8px; letter-spacing: 0.08em; }
 
-        /* ===== MAIN APP ===== */
-        #app { display: none; flex-direction: column; height: 100%; }
+@keyframes splFadeIn { to { opacity: 1; } }
+@keyframes splScaleIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes splSlideDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes splSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes splGlowIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes splSpin { to { transform: rotate(360deg); } }
+@keyframes splLoad { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes splFloat { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.3; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
 
-        /* STATUS BAR */
-        .sbar {
-            background: var(--primary-dark);
-            height: 22px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 12px;
-            font-size: 11px;
-            color: var(--accent);
-            font-family: sans-serif;
-            flex-shrink: 0;
-        }
+/* ── HEADER ── */
+header{
+  background:var(--gd);padding:0 12px;
+  display:flex;align-items:center;gap:9px;
+  height:56px;position:sticky;top:0;z-index:300;
+  box-shadow:0 2px 8px rgba(0,0,0,0.4);
+  /* ✅ بگ فکس: padding-top:0 — Android WebView میں env() غلط space بناتا تھا */
+  padding-top: 0;
+  justify-content: center;
+}
+.hlogo{display:flex;align-items:center;gap:8px;cursor:pointer;}
+.hlogo-img{width:34px;height:34px;border-radius:8px;object-fit:cover;border:1px solid var(--gold)}
+.hlogo-text{font-size:1.1rem;font-weight:700;color:var(--glo);white-space:nowrap}
 
-        /* TOOLBAR */
-        .toolbar {
-            background: var(--primary);
-            padding: 10px 14px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--primary-light);
-            flex-shrink: 0;
-        }
-        .toolbar-title {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: clamp(18px, 4vw, 24px);
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .toolbar-btns { display: flex; gap: 8px; }
-        .tb-btn {
-            background: var(--primary-light);
-            border: 1px solid var(--btn-border);
-            color: var(--accent);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .tb-btn:hover { background: var(--primary-light); opacity: 0.85; }
+/* ── BOTTOM NAV ── */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;background:var(--gd);
+  display:flex;border-top:1px solid rgba(255,255,255,0.1);z-index:300;
+  height: 60px; padding-bottom: 0;
+}
+.nbtn{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;
+  color:rgba(255,255,255,0.4);cursor:pointer;
+  border:none;background:none;font-family:var(--fur);font-size:0.75rem;
+  transition:color .2s; height: 100%;
+}
+.nbtn.active{color:var(--glo)}
+.nbtn svg{width:20px;height:20px}
 
-        /* CONTENT */
-        .content-area { flex: 1; overflow-y: auto; padding: 16px; position: relative; scroll-behavior: smooth; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+/* ── LAYOUT ── */
+.main{padding-bottom:80px}
+.view{display:none}
+.view.active{display:block}
 
-        /* CONTINUOUS SCROLL PAGE BLOCK */
-        .page-block {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        .page-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border);
-            color: var(--sub-color);
-            font-size: 14px;
-        }
-        .page-footer-btns { display: flex; gap: 8px; }
-        .page-action-btn {
-            background: var(--primary-light);
-            color: var(--accent);
-            border: 1px solid var(--btn-border);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-family: 'JameelNoori', serif;
-            font-size: 14px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .page-action-btn:hover { opacity: 0.8; }
+/* ── BANNER ── */
+.banner{background:linear-gradient(160deg,var(--gd) 0%,var(--gm) 55%,var(--gl) 100%);padding:22px 18px 18px;text-align:center;color:#f5f0e8;}
+.banner h1{font-size:1.2rem;color:var(--glo);margin-bottom:3px}
+.banner p{font-size:0.8rem;color:rgba(255,255,255,0.6)}
+.stats{display:flex;justify-content:center;gap:24px;margin-top:13px}
+.stat .n{font-size:1.5rem;font-weight:700;color:var(--glo);line-height:1}
+.stat .l{font-size:0.72rem;color:rgba(255,255,255,0.55);margin-top:2px}
+.stitle{font-size:0.95rem;font-weight:700;color:var(--gd);padding:15px 15px 7px;border-bottom:2px solid var(--gold);margin:0 15px;}
+[data-theme="dark"] .stitle,[data-theme="night"] .stitle{color:var(--tx)}
 
-        /* TYPOGRAPHY */
-        .urdu-text {
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: var(--urdu-size);
-            line-height: 2.2;
-            color: var(--urdu-color);
-            direction: rtl;
-            text-align: justify;
-        }
-        .arabic-text  {
-            font-family: 'AlQalam', 'Amiri', serif;
-            font-size: var(--arabic-size);
-            line-height: 2.4;
-            color: var(--urdu-color); /* رنگ کو اردو ٹیکسٹ کے برابر کر دیا گیا ہے */
-            font-weight: normal; /* بولڈ (موٹاپن) ختم کر دیا گیا ہے */
-            direction: rtl;
-        }
-        .book-heading {
-            font-family: 'AlQalam', 'Amiri', serif;
-            font-size: calc(var(--urdu-size) + 6px);
-            color: var(--chapter-color);
-            font-weight: 700;
-            text-align: center;
-            margin: 14px 0 8px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 8px;
-        }
-        .book-heading-h2 {
-            font-size: calc(var(--urdu-size) + 2px);
-            color: #D4A24C;
-            font-weight: 700;
-            margin: 10px 0 4px;
-        }
-        .book-heading-h3 {
-            font-size: var(--urdu-size);
-            color: #8AB4D4;
-            font-weight: 600;
-            margin: 8px 0 4px;
-        }
-        .highlight {
-            background: rgba(232,213,163,0.35);
-            color: #E87D5A;
-            font-weight: 700;
-            padding: 0 4px;
-            border-radius: 4px;
-            border-bottom: 2px solid #E87D5A;
-        }
+/* ── FANOON ── */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px}
+@media(min-width:480px){.fgrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:700px){.fgrid{grid-template-columns:repeat(4,1fr)}}
+.fcard{background:var(--bg3);border-radius:var(--r);padding:14px 12px;cursor:pointer;border:1px solid var(--bg2);box-shadow:var(--sh);transition:transform .14s;}
+.fcard:active{transform:scale(.97)}
+.fcard-name{font-size:0.9rem;font-weight:700;color:var(--gd)}
+[data-theme="dark"] .fcard-name,[data-theme="night"] .fcard-name{color:var(--tx)}
+.fcard-count{font-size:0.73rem;color:var(--tx2);margin-top:3px}
+.fbar{height:3px;background:var(--bg2);border-radius:2px;margin-top:8px;overflow:hidden}
+.fbar-fill{height:100%;background:var(--ga);border-radius:2px}
 
-        /* SEARCH */
-        .search-row {
-            display: flex; gap: 8px; margin-bottom: 12px;
-        }
-        .search-input {
-            flex: 1; padding: 10px 14px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: var(--card-bg);
-            color: var(--urdu-color);
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: 16px;
-            outline: none;
-            direction: rtl;
-        }
-        .search-input:focus { border-color: var(--accent2); }
-        .search-btn {
-            background: var(--primary);
-            color: var(--accent);
-            border: 1px solid var(--btn-border);
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: 15px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .search-modes {
-            display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
-        }
-        .mode-btn {
-            background: var(--card-bg);
-            color: var(--sub-color);
-            border: 1px solid var(--border);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-family: 'JameelNoori', serif;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .mode-btn.active {
-            background: var(--primary);
-            color: var(--accent);
-            border-color: var(--accent2);
-        }
-        .result-count {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--sub-color);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 12px;
-            display: none;
-        }
+/* ── SECTION HEADER ── */
+.shead{background:var(--gm);color:#f5f0e8;padding:12px 14px;display:flex;align-items:center;gap:8px;}
+.back{background:none;border:none;color:var(--glo);font-size:1.2rem;cursor:pointer;padding:3px;font-family:var(--fur)}
+.shead-title{font-size:0.95rem;font-weight:700;color:var(--glo)}
 
-        /* CARDS */
-        .list-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 14px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s;
-        }
-        .list-card:hover { border-color: var(--accent2); }
-        .list-card-title { color: var(--chapter-color); font-weight: 700; font-size: 16px; margin-bottom: 4px; }
-        .list-card-sub { color: var(--sub-color); font-size: 13px; }
+/* ── BOOK LIST ── */
+.blist{padding:6px 0}
+.bitem{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--bg2);cursor:pointer;transition:background .13s;background:var(--bg3);}
+.bitem:active{background:var(--bg2)}
+.bicon{width:38px;height:50px;background:var(--gm);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--glo);font-size:1.05rem;}
+.binfo{flex:1;min-width:0}
+.btitle{font-size:0.95rem;font-weight:700;color:var(--tx);line-height:1.4;}
+.btitle.font-ur { font-family: var(--fur); }
+.btitle.font-ar { font-family: var(--far) !important; font-size: 1.15rem; font-weight: normal; }
+.bauthor{font-size:0.73rem;color:var(--tx2);margin-top:2px}
 
-        /* SETTINGS */
-        .setting-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .setting-label { color: var(--urdu-color); font-size: 16px; }
-        .font-ctrl { display: flex; align-items: center; gap: 10px; }
-        .font-ctrl button {
-            background: var(--primary);
-            color: var(--accent);
-            border: 1px solid var(--btn-border);
-            width: 36px; height: 36px;
-            border-radius: 8px;
-            font-size: 20px;
-            cursor: pointer;
-            line-height: 1;
-        }
-        .font-ctrl span { color: var(--accent); font-size: 16px; font-family: sans-serif; min-width: 28px; text-align: center; }
+.aitem{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--bg2);cursor:pointer;background:var(--bg3);}
+.aava{width:40px;height:40px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;color:var(--glo);font-size:0.95rem;flex-shrink:0;}
+.aname{font-size:0.9rem;font-weight:700;color:var(--tx)}
+.ast{font-size:0.7rem;padding:2px 6px;border-radius:8px;margin-top:2px;display:inline-block}
+.ast-h{background:#e6f4ea;color:#2d6a35}
+.ast-w{background:var(--bg2);color:var(--tx2)}
 
-        /* SWITCH */
-        .switch { position: relative; width: 52px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; inset: 0;
-            background: var(--primary-light);
-            border: 1px solid var(--btn-border);
-            border-radius: 34px;
-            transition: 0.3s;
-        }
-        .slider::before {
-            position: absolute; content: "🌙";
-            height: 20px; width: 20px; left: 4px; bottom: 3px;
-            background: var(--primary-dark);
-            border-radius: 50%;
-            transition: 0.3s;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 11px;
-        }
-        input:checked + .slider { background: #C9B48A; }
-        input:checked + .slider::before { transform: translateX(24px); content: "☀️"; }
+/* ── LOCAL SEARCH INPUTS ── */
+.local-search-box { background: var(--bg2); padding: 8px 14px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.local-si { width: 100%; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--gold); background: var(--bg3); color: var(--tx); font-family: var(--fur); font-size: 0.9rem; outline: none; }
+.rad-list { max-height: 180px; overflow-y: auto; background: var(--bg3); border-radius: 6px; margin-top: 8px; border: 1px solid var(--bg2); }
+.rad-lbl { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--bg2); cursor: pointer; color: var(--tx); font-size: 0.85rem; font-family: var(--fur);}
+.rad-lbl:last-child { border-bottom: none; }
+.rad-lbl input[type="checkbox"] { accent-color: var(--ga); width: 18px; height: 18px; cursor: pointer; }
 
-        /* BOTTOM NAV */
-        .bottom-nav {
-            background: var(--primary);
-            display: flex;
-            border-top: 1px solid var(--primary-light);
-            flex-shrink: 0;
-        }
-        .nav-item {
-            flex: 1; text-align: center;
-            padding: 10px 4px 8px;
-            color: var(--nav-inactive);
-            cursor: pointer;
-            font-size: clamp(14px, 2.8vw, 17px);
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            border-top: 2px solid transparent;
-            transition: all 0.2s;
-        }
-        .nav-item.active { color: var(--accent); border-top-color: var(--accent2); }
-        .nav-icon { font-size: 18px; display: block; margin-bottom: 2px; }
+/* 🔴 READER HEAD (STICKY) 🔴 */
+.rhead{
+  background:var(--gd); padding:11px 14px; display:flex; align-items:center; gap:8px;
+  /* ✅ بگ فکس: top:56px — env(safe-area-inset-top) Android پر extra space بناتا تھا */
+  position: sticky; top: 56px; z-index: 280;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.rtitle{font-size:0.92rem;font-weight:700;color:var(--glo);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rtitle.font-ur { font-family: var(--fur); }
+.rtitle.font-ar { font-family: var(--far) !important; font-size: 1.15rem; font-weight: normal; padding-top: 5px; }
+.toc-btn { background:none; border:none; color:var(--glo); font-size:1.4rem; padding:0 8px; cursor:pointer; }
 
-        /* TOC DRAWER */
-        .drawer-overlay {
-            display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 100;
-        }
-        .drawer {
-            display: none; position: absolute; top: 0; right: 0; width: 82%; max-width: 320px;
-            height: 100%; background: var(--drawer-bg);
-            border-left: 1px solid var(--primary-light);
-            z-index: 101; flex-direction: column;
-            animation: slideIn 0.25s ease;
-        }
-        .drawer.open { display: flex; }
-        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-        .drawer-header {
-            background: var(--primary);
-            padding: 14px 16px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--primary-light);
-        }
-        .drawer-title { color: var(--accent); font-weight: 700; font-size: 17px; }
-        .drawer-close { background: none; border: none; color: var(--accent); font-size: 22px; cursor: pointer; }
-        .drawer-body { flex: 1; overflow-y: auto; padding: 8px; }
-        .toc-item {
-            padding: 10px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(26,58,92,0.4);
-            transition: background 0.15s;
-        }
-        .toc-item:hover { background: rgba(232,213,163,0.08); }
-        .toc-title { color: var(--toc-ch); font-size: 16px; font-weight: 600; }
-        .toc-sub { color: var(--toc-vol); font-size: 13px; margin-top: 2px; }
-        .toc-item.h2 { padding-right: 24px; }
-        .toc-item.h2 .toc-title { color: var(--sub-color); font-size: 15px; font-weight: 400; }
-        .toc-item.h3 { padding-right: 38px; }
-        .toc-item.h3 .toc-title { color: var(--nav-inactive); font-size: 14px; }
+.rctrl{display:flex;gap:6px;padding:7px 14px;background:var(--bg2);border-bottom:1px solid rgba(0,0,0,0.08);align-items:center;}
+.fbtn{padding:4px 12px;border:1px solid var(--ga);border-radius:6px;background:none;cursor:pointer;font-family:var(--fur);color:var(--tx);font-size:1rem;font-weight:bold;}
 
-        /* JUMP DIALOG */
-        .dialog-overlay {
-            display: none; position: absolute; inset: 0;
-            background: rgba(0,0,0,0.6); z-index: 200;
-            align-items: center; justify-content: center;
-        }
-        .dialog-overlay.open { display: flex; }
-        .dialog-box {
-            background: var(--drawer-bg);
-            border: 1px solid var(--primary-light);
-            border-radius: 16px;
-            padding: 20px;
-            width: 90%; max-width: 340px;
-        }
-        .dialog-title { color: var(--accent); font-size: 17px; font-weight: 700; margin-bottom: 14px; text-align: center; }
-        .dialog-row { display: flex; gap: 8px; margin-bottom: 12px; }
-        .dialog-input {
-            flex: 1; padding: 10px; border: 1px solid var(--border);
-            border-radius: 8px; background: var(--card-bg);
-            color: var(--urdu-color); font-family: sans-serif; font-size: 16px;
-            text-align: center;
-        }
-        .dialog-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent2), var(--accent));
-            color: var(--primary-dark);
-            border: none; padding: 12px;
-            border-radius: 10px;
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: 16px; font-weight: 700;
-            cursor: pointer;
-        }
+/* 🔴 READER BODY (اسکرین کٹنے کا حل) 🔴 */
+.rbody{padding:17px 16px 80px; max-width:100vw; overflow-x:hidden; margin:0 auto; background:var(--bg3); word-wrap:break-word; overflow-wrap:break-word;}
+.rbody * { max-width: 100% !important; box-sizing: border-box !important; }
+.rbody img { height: auto !important; }
+.rbody table { display: block; overflow-x: auto; width: 100% !important; }
 
-        /* BOOKMARKS TAB */
-        .bm-empty { text-align: center; color: var(--sub-color); padding: 40px 20px; font-size: 16px; }
-        .bm-card {
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .bm-info { flex: 1; cursor: pointer; }
-        .bm-title { color: var(--chapter-color); font-weight: 700; font-size: 16px; }
-        .bm-vol { color: var(--sub-color); font-size: 13px; margin-top: 3px; }
-        .bm-del {
-            background: rgba(211,47,47,0.15);
-            color: #E87D7D;
-            border: 1px solid rgba(211,47,47,0.3);
-            padding: 6px 10px; border-radius: 8px;
-            font-family: 'JameelNoori', 'Noto Nastaliq Urdu', serif;
-            font-size: 14px; cursor: pointer; white-space: nowrap;
-        }
+/* READER FLOATING SLIDER */
+.reader-slider-wrap {
+    position: fixed; bottom: 75px; left: 50%; transform: translateX(-50%);
+    width: 90%; max-width: 400px; background: rgba(15, 35, 24, 0.9);
+    backdrop-filter: blur(5px); padding: 8px 16px; border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 290; 
+    display: flex; align-items: center; gap: 12px;
+    border: 1px solid var(--gold);
+}
+.reader-slider-wrap span { color: var(--glo); font-size: 0.75rem; font-weight: bold; font-family: var(--fur); }
+.reader-slider { flex: 1; accent-color: var(--gold); }
 
-        /* PDF VIEWER */
-        #pdfFrame {
-            width: 100%; height: 100%; border: none;
-            display: none;
-        }
-        .pdf-bar {
-            display: none;
-            background: var(--primary); padding: 8px 14px;
-            align-items: center; gap: 10px; border-bottom: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-        .pdf-bar.visible { display: flex; }
-        .pdf-back-btn {
-            background: var(--primary-light); color: var(--accent);
-            border: 1px solid var(--btn-border);
-            padding: 6px 12px; border-radius: 8px;
-            font-family: 'JameelNoori', serif; font-size: 15px; cursor: pointer;
-        }
-        .pdf-label { color: var(--accent); font-size: 15px; flex: 1; text-align: center; }
+/* Body Forces */
+.rbody { font-size: var(--ur-fs) !important; }
+.rbody p { font-family: var(--fur); font-size: var(--ur-fs) !important; margin-bottom: 12px; text-align: justify; line-height: 2.2; }
+.rbody h1{font-family:var(--fur);color:var(--gd);border-bottom:2px solid var(--gold);padding-bottom:5px;margin:20px 0 11px;font-size:1.1rem; padding-top:10px; transition: background-color 0.8s;}
+.rbody h2{font-family:var(--fur);color:var(--gm);border-right:3px solid var(--gold);padding-right:8px;margin:16px 0 9px;font-size:1rem; padding-top:10px; transition: background-color 0.8s;}
+.rbody h3{font-family:var(--fur);color:var(--tx2);margin:13px 0 7px;font-size:0.93rem; padding-top:10px; transition: background-color 0.8s;}
+[data-theme="dark"] .rbody h1,[data-theme="night"] .rbody h1{color:var(--tx)}
+[data-theme="dark"] .rbody h2,[data-theme="night"] .rbody h2{color:var(--tx)}
 
-        /* RESPONSIVE */
-        @media (min-width: 600px) {
-            .content-area { padding: 20px max(20px, calc((100vw - 600px)/2)); }
-            .drawer { max-width: 380px; }
-            .splash-middle { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: 700px; }
-        }
+/* 1. MIX FORMAT */
+.mix-urdu-arabic ar, .mix-urdu-arabic .ar, .mix-urdu-arabic [lang="ar"] {
+  font-family: var(--far) !important; font-size: var(--ar-fs) !important;
+  line-height: 2.3; text-align: center; background: var(--bg2); 
+  border-right: 4px solid var(--gold); padding: 12px 14px; 
+  margin: 13px 0; border-radius: 0 var(--r) var(--r) 0;
+  direction: rtl; color: var(--tx); display: block;
+}
+.mix-urdu-arabic span.ar, .mix-urdu-arabic p ar { 
+    display: inline !important; background: transparent !important; padding: 0 !important; 
+    border: none !important; margin: 0 !important; font-size: var(--ar-fs) !important; 
+}
 
-        /* LOADING OVERLAY */
-        .loading-overlay {
-            display: none; position: absolute; inset: 0;
-            background: rgba(10,22,40,0.8); z-index: 50;
-            align-items: center; justify-content: center;
-            flex-direction: column; gap: 14px;
-        }
-        .loading-overlay.show { display: flex; }
-        .spinner {
-            width: 48px; height: 48px;
-            border: 3px solid var(--primary-light);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text { color: var(--accent); font-size: 15px; }
+/* 2. PURE URDU FORMAT */
+.pure-urdu ar, .pure-urdu .ar, .pure-urdu [lang="ar"], .pure-urdu span.ar {
+    background: transparent !important; border: none !important; padding: 0 !important; margin: 0 !important;
+    text-align: justify !important; font-family: var(--far) !important; font-size: var(--ar-fs) !important; 
+    display: inline !important; line-height: inherit !important;
+}
+.pure-urdu p.ar { display: block !important; margin: 0 0 12px 0 !important; text-align: center !important; }
+.pure-urdu > ar { display: block !important; text-align: center !important; margin-bottom: 12px !important; }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 4px; }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+/* 3. PURE ARABIC FORMAT */
+.pure-arabic, .pure-arabic p, .pure-arabic div, .pure-arabic span, .pure-arabic ar {
+    font-family: var(--far) !important; font-size: var(--ar-fs) !important; text-align: justify !important; line-height: 2.3;
+}
+.pure-arabic ar, .pure-arabic .ar, .pure-arabic [lang="ar"] {
+    background: transparent !important; border: none !important; padding: 0 !important; margin: 0 0 12px 0 !important;
+}
+
+/* 4. ENGLISH FORMAT */
+.lang-en { direction: ltr !important; text-align: left !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; }
+.lang-en p { direction: ltr !important; text-align: justify !important; font-family: inherit !important; font-size: 1.05em !important; line-height: 1.8; }
+.lang-en h1, .lang-en h2, .lang-en h3 { text-align: left !important; font-family: inherit !important; direction: ltr !important; }
+.lang-en ar, .lang-en .ar, .lang-en [lang="ar"], .lang-en span.ar {
+    direction: rtl !important; font-family: var(--far) !important; font-size: var(--ar-fs) !important;
+    text-align: right !important; display: inline !important; line-height: inherit !important;
+}
+.lang-en p.ar { display: block !important; text-align: right !important; margin-bottom: 12px !important; }
+
+/* Headings Checkbox Control */
+.arab-headings h1, .arab-headings h2, .arab-headings h3 { font-family: var(--fhd) !important; font-size: 1.45rem !important; font-weight: bold; }
+
+/* 🔴 TOC DRAWER 🔴 */
+.toc-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:400; backdrop-filter:blur(2px); }
+.toc-bg.open { display:block; }
+.toc-drawer { position:fixed; top:0; right:-320px; width:280px; max-width:85%; height:100vh; background:var(--bg3); z-index:401; transition:right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display:flex; flex-direction:column; box-shadow:-5px 0 20px rgba(0,0,0,0.3); }
+.toc-drawer.open { right:0; }
+.toc-head { padding:18px 15px; background:var(--gd); color:var(--glo); display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid var(--gold); }
+.toc-title { font-weight:bold; font-size:1.1rem; }
+.toc-close { background:none; border:none; color:var(--glo); font-size:1.3rem; cursor:pointer; }
+.toc-list { flex:1; overflow-y:auto; padding:10px 0; }
+.toc-item-wrap { border-bottom:1px solid var(--bg2); }
+.toc-item { display:flex; justify-content:space-between; align-items:center; padding:12px 15px; cursor:pointer; color:var(--tx); }
+.toc-item:active { background:var(--bg2); }
+.t-txt { flex:1; line-height:1.4; }
+.t-txt.font-ur { font-family: var(--fur); }
+.t-txt.font-ar { font-family: var(--far) !important; font-size: 1.15rem; }
+.toc-item.h1-item { font-weight:bold; color:var(--gd); font-size:0.95rem; }
+[data-theme="dark"] .toc-item.h1-item, [data-theme="night"] .toc-item.h1-item { color:var(--glo); }
+.toc-item.h2-item { padding-right:25px; font-size:0.85rem; color:var(--gm); border-bottom:1px solid rgba(0,0,0,0.03); }
+.toc-item.h3-item { padding-right:40px; font-size:0.8rem; color:var(--tx2); border-bottom:1px solid rgba(0,0,0,0.03); }
+.t-ico { padding:0 10px; font-size:0.75rem; transition:transform 0.3s; color:var(--ga); display:flex; align-items:center; }
+.t-ico.open { transform:rotate(180deg); }
+.toc-sub { background:var(--bg); overflow:hidden; }
+
+/* ── MAIN SEARCH ── */
+.search-top{background:var(--gm);padding:10px 13px;display:flex;gap:8px;align-items:center}
+.si{flex:1;padding:9px 14px;border-radius:21px;border:none;background:rgba(255,255,255,0.13);color:#fff;font-family:var(--fur);font-size:0.97rem;direction:rtl;outline:none;}
+.si::placeholder{color:rgba(255,255,255,0.4)}
+.search-mode-row { display: flex; gap: 15px; padding: 8px 13px; background: var(--bg2); border-bottom: 1px solid rgba(0,0,0,0.07); align-items: center; }
+.search-mode-row label { font-size: 0.8rem; color: var(--tx); display: flex; align-items: center; gap: 5px; cursor: pointer; }
+.sscope{display:flex;gap:6px;padding:7px 13px;background:var(--bg);border-bottom:1px solid var(--bg2);overflow-x:auto;scrollbar-width:none;}
+.sscope::-webkit-scrollbar{display:none}
+.scope-chip{white-space:nowrap;padding:4px 11px;border-radius:15px;font-size:0.75rem;border:1px solid var(--bg2);background:var(--bg3);color:var(--tx2);cursor:pointer;font-family:var(--fur);transition:all .14s;}
+.scope-chip.active{background:var(--gl);color:#fff;border-color:var(--gl)}
+.rcount{font-size:0.78rem;color:var(--tx2);padding:8px 14px 3px}
+.nores{text-align:center;padding:36px 17px;color:var(--tx2);font-size:0.9rem}
+mark.highlight, mark { background-color: #ffeb3b !important; color: #000 !important; padding: 0 3px; border-radius: 4px; font-weight: bold; }
+
+/* ── SETTINGS & ADMIN ── */
+.sets-section{margin:13px 14px}
+.sets-title{font-size:0.85rem;font-weight:700;color:var(--gd);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--gold)}
+[data-theme="dark"] .sets-title,[data-theme="night"] .sets-title{color:var(--tx)}
+.sets-card{background:var(--bg3);border-radius:var(--r);padding:13px;box-shadow:var(--sh)}
+.theme-row{display:flex;gap:8px;flex-wrap:wrap}
+.theme-btn{flex:1;min-width:80px;padding:10px 6px;border-radius:8px;border:2px solid transparent;cursor:pointer;font-family:var(--fur);font-size:0.82rem;font-weight:700;text-align:center;transition:all .2s;}
+.theme-btn.active{border-color:var(--gold)}
+.tb-light{background:#f5f0e8;color:#1a1a0f}
+.tb-dark{background:#23232e;color:#e8e0d0}
+.tb-night{background:#2e2200;color:#f5dfa0}
+.font-opts{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.font-opt{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:8px;border:1px solid var(--bg2);cursor:pointer;background:var(--bg);transition:all .15s;}
+.font-opt.active{border-color:var(--gold);background:var(--bg2)}
+.font-opt-name{font-size:0.82rem;color:var(--tx2)}
+.font-opt-preview{font-size:1rem;color:var(--tx)}
+.fsize-row{display:flex;align-items:center;gap:10px;margin-top:6px}
+.fsize-row span{font-size:0.8rem;color:var(--tx2);white-space:nowrap}
+input[type=range]{flex:1;accent-color:var(--ga)}
+
+.admin-s{margin:13px 14px}
+.admin-st{font-size:0.85rem;font-weight:700;color:var(--gd);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--gold)}
+[data-theme="dark"] .admin-st,[data-theme="night"] .admin-st{color:var(--tx)}
+.aform{background:var(--bg3);border-radius:var(--r);padding:13px;box-shadow:var(--sh)}
+.aform label{display:block;font-size:0.77rem;color:var(--tx2);margin-bottom:3px;margin-top:10px}
+.aform label:first-child{margin-top:0}
+.aform input,.aform select,.aform textarea{width:100%;padding:8px 11px;border:1px solid var(--bg2);border-radius:7px;font-family:var(--fur);font-size:0.88rem;color:var(--tx);direction:rtl;background:var(--bg);outline:none;transition:border .2s;}
+.aform input:focus,.aform select:focus,.aform textarea:focus{border-color:var(--ga)}
+.aform textarea{min-height:90px;resize:vertical;line-height:1.8}
+.arow{display:flex;gap:8px}
+.arow>*{flex:1}
+.abtn{display:block;width:100%;margin-top:11px;padding:10px;border:none;border-radius:8px;background:var(--gm);color:var(--glo);font-family:var(--fur);font-size:0.92rem;font-weight:700;cursor:pointer;}
+.abtn:active{background:var(--gd)}
+.abtn-sec{background:transparent;border:1px solid var(--ga);color:var(--ga)}
+.abtn-del{background:none;border:1px solid #c0392b;color:#c0392b;width:auto;padding:4px 10px;font-size:0.75rem;margin-top:0}
+.aitm{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--bg3);border-radius:7px;margin-bottom:6px;box-shadow:0 1px 4px rgba(0,0,0,0.07);gap:7px;}
+.aitm-name{font-size:0.85rem;font-weight:700;color:var(--tx);flex:1}
+.aitm-sub{font-size:0.71rem;color:var(--tx2);margin-top:1px}
+.aitm-actions{display:flex;gap:5px;flex-shrink:0}
+.abtn-edit{background:none;border:1px solid var(--ga);color:var(--ga);width:auto;padding:4px 10px;font-size:0.75rem;margin-top:0;border-radius:6px;font-family:var(--fur);cursor:pointer}
+
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;align-items:center;justify-content:center;padding:20px;}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg3);border-radius:var(--r);padding:18px;width:100%;max-width:420px;box-shadow:0 4px 24px rgba(0,0,0,0.3);}
+.modal h3{font-size:0.97rem;color:var(--tx);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bg2)}
+.modal label{display:block;font-size:0.77rem;color:var(--tx2);margin-bottom:3px;margin-top:9px}
+.modal input,.modal select{width:100%;padding:8px 11px;border:1px solid var(--bg2);border-radius:7px;font-family:var(--fur);font-size:0.88rem;color:var(--tx);direction:rtl;background:var(--bg);outline:none;}
+.modal-btns{display:flex;gap:8px;margin-top:13px}
+.modal-btns button{flex:1;padding:9px;border-radius:7px;border:none;font-family:var(--fur);font-size:0.88rem;cursor:pointer}
+.mbtn-save{background:var(--gm);color:var(--glo)}
+.mbtn-cancel{background:var(--bg2);color:var(--tx)}
+.toast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:var(--gd);color:var(--glo);padding:9px 18px;border-radius:20px;font-size:0.83rem;font-family:var(--fur);z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;box-shadow:var(--sh);}
+.toast.show{opacity:1}
+.loading{text-align:center;padding:36px;color:var(--tx2);font-size:0.86rem}
+.install-banner{display:none;background:var(--gm);padding:10px 14px;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.install-banner.show{display:flex}
+.install-banner p{flex:1;font-size:0.8rem;color:rgba(255,255,255,0.85)}
+.install-btn{padding:6px 14px;border-radius:7px;border:1px solid var(--gold);background:transparent;color:var(--glo);font-family:var(--fur);font-size:0.8rem;cursor:pointer;white-space:nowrap;}
+.dismiss-btn{background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.1rem;cursor:pointer;padding:2px}
+
+@media(min-width:640px){
+  .main,.bnav{max-width:740px;margin-left:auto;margin-right:auto}
+  .bnav{left:50%;transform:translateX(-50%);right:auto;width:100%;max-width:740px}
+}
+</style>
 </head>
-<body>
+<body data-theme="light">
 
-<div id="splash">
-    <div class="splash-top-band">
-        <div class="splash-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-        <div class="splash-book-title">تُحْفَةُ الْبَارِي</div>
-        <div class="splash-book-sub">فِي الْفِقْهِ الشَّافِعِي</div>
-        <div class="splash-divider"></div>
+<div id="splashScreen">
+  <div class="spl-bg-layer"></div>
+  <div class="spl-ornament-top"></div>
+  <div class="spl-ornament-bottom"></div>
+  <div class="spl-particles" id="spl-particles"></div>
+  <div class="spl-center">
+    <div class="spl-ring-outer"><div class="spl-ring-inner"><span class="spl-symbol">📚</span></div></div>
+    <div class="spl-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <div class="spl-divider"><div class="spl-line"></div><div class="spl-dot"></div><div class="spl-dot"></div><div class="spl-dot"></div><div class="spl-line"></div></div>
+    <div class="spl-title">مکتبہ شافعیہ</div>
+    <div class="spl-sub-info">
+      <div class="spl-label">─── زیر نگرانی ───</div>
+      <div class="spl-text">شعبۂ تحقیق</div>
+      <div class="spl-inst">دار العلوم اسلامیہ عربیہ تلوجہ</div>
+      <div class="spl-dev">ڈیولپر: مفتی اظہر محمد امین پٹیل</div>
     </div>
-
-    <div class="splash-middle">
-        <div class="splash-ornament">❧</div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div class="splash-label">مسائل و دلائل کا مستند مجموعہ</div>
-            <div class="splash-label" style="margin-top:4px;">مؤلف</div>
-            <div class="splash-author">شیخ الحدیث مولانا محمد ابراہیم بن علی خطیب حفظہ اللہ</div>
-            <div class="splash-madrasa">جامعہ حسینیہ عربیہ، شریوردھن</div>
-        </div>
-        <div class="splash-ornament">❧</div>
+    <div class="spl-loader-wrap">
+      <div class="spl-loader-bar"><div class="spl-loader-fill"></div></div>
+      <div class="spl-loader-text">لوڈ ہو رہا ہے...</div>
     </div>
-
-    <div class="splash-bottom">
-        <div class="splash-dev-label">تیار کردہ</div>
-        <div class="splash-dev-name">مفتی اظہر بن محمد امین پٹیل</div>
-        <div class="splash-dev-place">مدرس دار العلوم اسلامیہ عربیہ تلوجہ</div>
-        <button class="btn-start" id="startBtn" onclick="enterApp()">کتاب لوڈ ہو رہی ہے...</button>
-    </div>
+  </div>
 </div>
 
-<div id="app">
-
-    <div class="sbar">
-        <span id="clock">٩:٤١</span>
-        <span>تحفۃ الباری</span>
-        <span>📶 🔋</span>
-    </div>
-
-    <div class="pdf-bar" id="pdfBar">
-        <button class="pdf-back-btn" onclick="closePdf()">⬅ واپس</button>
-        <div class="pdf-label">اصل کتاب PDF</div>
-    </div>
-
-    <div class="toolbar" id="mainToolbar">
-        <div class="toolbar-btns">
-            <button class="tb-btn" onclick="toggleDrawer()">☰ فہرست</button>
-            <button class="tb-btn" onclick="showJumpDialog()">↗ جمپ</button>
-        </div>
-        <div class="toolbar-title">تحفۃ الباری</div>
-        <div class="toolbar-btns">
-            <button class="tb-btn" onclick="openPdfAt(1, 20)">PDF 📄</button>
-        </div>
-    </div>
-
-    <div style="flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column;">
-
-        <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-
-        <div class="drawer" id="tocDrawer">
-            <div class="drawer-header">
-                <button class="drawer-close" onclick="closeDrawer()">✕</button>
-                <div class="drawer-title">فہرست مضامین</div>
-            </div>
-            <div class="drawer-body" id="tocBody">
-                <div class="bm-empty">ڈیٹا لوڈ ہو رہا ہے...</div>
-            </div>
-        </div>
-
-        <div class="dialog-overlay" id="jumpDialog">
-            <div class="dialog-box">
-                <div class="dialog-title">صفحے پر جائیں</div>
-                <div class="dialog-row">
-                    <input class="dialog-input" type="number" id="jumpVol" placeholder="جلد" min="1" max="3">
-                    <input class="dialog-input" type="number" id="jumpPage" placeholder="صفحہ نمبر" min="1">
-                </div>
-                <button class="dialog-btn" onclick="doJump()">جائیں ←</button>
-                <div style="text-align:center;margin-top:10px;">
-                    <button onclick="closeJumpDialog()" style="background:none;border:none;color:var(--sub-color);cursor:pointer;font-family:'JameelNoori',serif;font-size:15px;">بند کریں</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="loading-overlay" id="loadingOverlay">
-            <div class="spinner"></div>
-            <div class="loading-text">لوڈ ہو رہا ہے...</div>
-        </div>
-
-        <div id="pdfContainer" style="display:none; width:100%; height:100%; overflow:auto; background:#1A1A1A; text-align:center;">
-    <canvas id="pdfCanvas"></canvas>
+<div class="install-banner" id="installBanner">
+  <p>مکتبہ شافعیہ کو انسٹال کریں — آف لائن بھی کام کرے گا</p>
+  <button class="install-btn" onclick="installPWA()">انسٹال کریں</button>
+  <button class="dismiss-btn" onclick="dismissInstall()">✕</button>
 </div>
 
-        <div class="content-area" id="contentArea">
-
-            <div id="tab-book" class="tab-content active">
-                <div id="bookContent">
-                    <div style="text-align:center;color:var(--sub-color);padding:40px 0;">کتاب لوڈ ہو رہی ہے...</div>
-                </div>
-            </div>
-
-            <div id="tab-search" class="tab-content">
-                <div class="search-row">
-                    <input class="search-input" type="text" id="searchInput" placeholder="کوئی لفظ تلاش کریں..." oninput="onSearchInput(this.value)">
-                    <button class="search-btn" onclick="doSearch()">تلاش</button>
-                </div>
-                <div class="search-modes">
-                    <button class="mode-btn active" id="modeExact" onclick="setMode('exact')">عین مطابق</button>
-                    <button class="mode-btn" id="modeAll" onclick="setMode('all')">تمام الفاظ</button>
-                    <button class="mode-btn" id="modeAny" onclick="setMode('any')">کوئی لفظ</button>
-                </div>
-                <div class="result-count" id="resultCount"></div>
-                <div id="searchResults"></div>
-            </div>
-
-            <div id="tab-bookmarks" class="tab-content">
-                <div id="bookmarksList"><div class="bm-empty">کوئی مقام محفوظ نہیں ہے۔</div></div>
-            </div>
-
-            <div id="tab-settings" class="tab-content">
-                <div class="setting-card">
-                    <span class="setting-label">☀️ ڈے موڈ</span>
-                    <label class="switch">
-                        <input type="checkbox" id="themeToggle" onchange="toggleTheme(this.checked)">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-card">
-                    <span class="setting-label">اردو فونٹ سائز</span>
-                    <div class="font-ctrl">
-                        <button onclick="changeFont('urdu',2)">+</button>
-                        <span id="urduSz">20</span>
-                        <button onclick="changeFont('urdu',-2)">−</button>
-                    </div>
-                </div>
-                <div class="setting-card">
-                    <span class="setting-label">عربی فونٹ سائز</span>
-                    <div class="font-ctrl">
-                        <button onclick="changeFont('arabic',2)">+</button>
-                        <span id="arabicSz">26</span>
-                        <button onclick="changeFont('arabic',-2)">−</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <div class="nav-item active" id="navBook" onclick="switchTab('book',this)">
-            <span class="nav-icon">📖</span>کتاب
-        </div>
-        <div class="nav-item" id="navSearch" onclick="switchTab('search',this)">
-            <span class="nav-icon">🔍</span>تلاش
-        </div>
-        <div class="nav-item" id="navBm" onclick="switchTab('bookmarks',this)">
-            <span class="nav-icon">🔖</span>محفوظ
-        </div>
-        <div class="nav-item" id="navSettings" onclick="switchTab('settings',this)">
-            <span class="nav-icon">⚙️</span>ترتیبات
-        </div>
-    </div>
+<div class="toc-bg" id="tocBg" onclick="closeToc()"></div>
+<div class="toc-drawer" id="tocDrawer">
+  <div class="toc-head">
+    <span class="toc-title">فہرست عنوانات</span>
+    <button class="toc-close" onclick="closeToc()">✕</button>
+  </div>
+  <div class="toc-list" id="tocList"></div>
 </div>
+
+<header>
+  <div class="hlogo" onclick="goHome()">
+    <img class="hlogo-img" src="icons/icon-192.png" alt="لوگو" onerror="this.style.display='none'">
+    <span class="hlogo-text">مکتبہ شافعیہ</span>
+  </div>
+</header>
+
+<main class="main">
+
+<div class="view active" id="view-home">
+  <div class="banner">
+    <h1>مکتبہ شافعیہ</h1>
+    <p>شعبۂ تحقیق — دار العلوم تلوجہ</p>
+    <div class="stats">
+      <div class="stat"><div class="n" id="sB">0</div><div class="l">کتابیں</div></div>
+      <div class="stat"><div class="n" id="sA">0</div><div class="l">مصنفین</div></div>
+      <div class="stat"><div class="n" id="sF">0</div><div class="l">فنون</div></div>
+    </div>
+  </div>
+  <div class="stitle">فنون</div>
+  <div class="fgrid" id="fgrid"><div class="loading">لوڈ ہو رہا ہے...</div></div>
+</div>
+
+<div class="view" id="view-books">
+  <div class="shead">
+    <button class="back" onclick="history.back()">←</button>
+    <div class="shead-title" id="bkTitle">کتابیں</div>
+  </div>
+  <div class="local-search-box">
+    <input type="text" id="localBookSearch" class="local-si" placeholder="اس فہرست میں کتاب تلاش کریں..." oninput="renderBList(curFan, null, this.value)">
+  </div>
+  <div class="blist" id="blist"></div>
+</div>
+
+<div class="view" id="view-reader">
+  <div class="rhead">
+    <button class="back" onclick="history.back()">←</button>
+    <button class="toc-btn" onclick="openToc()">☰</button>
+    <div class="rtitle font-ur" id="rtitle">کتاب</div>
+  </div>
+  <div class="rctrl">
+    <button class="fbtn" onclick="adjFont(-1)">− ا</button>
+    <button class="fbtn" onclick="adjFont(1)">+ ا</button>
+    <span style="flex:1"></span>
+    <span id="rmeta" style="font-size:0.73rem;color:var(--tx2)"></span>
+  </div>
+  <div class="rbody" id="rbody"></div>
+  
+  <div class="reader-slider-wrap" id="readerSliderWrap" style="display:none;">
+    <span>شروع</span>
+    <input type="range" id="bookScroller" class="reader-slider" min="0" max="100" value="0" oninput="scrollBookTo(this.value)">
+    <span>آخر</span>
+  </div>
+</div>
+
+<div class="view search-view" id="view-search">
+  <div class="search-top">
+    <button class="back" onclick="history.back()" style="color:var(--glo)">←</button>
+    <input class="si" id="si" type="text" placeholder="متن میں تلاش کریں..." oninput="doSearch()" onfocus="hideSearchDropdowns()">
+  </div>
+
+  <div class="search-mode-row">
+    <span class="sfilt-label" style="margin-left: 5px;">طریقہ:</span>
+    <label><input type="radio" name="searchMode" value="exact" onchange="doSearch()"> عین مطابق</label>
+    <label><input type="radio" name="searchMode" value="all" checked onchange="doSearch()"> تمام الفاظ</label>
+    <label><input type="radio" name="searchMode" value="any" onchange="doSearch()"> کوئی لفظ</label>
+  </div>
+
+  <div class="sscope">
+    <span class="sfilt-label" style="font-size:0.73rem;color:var(--tx2);align-self:center;flex-shrink:0">دائرہ:</span>
+    <button class="scope-chip active" data-scope="all" onclick="setScope(this,'all')">ساری کتابیں</button>
+    <button class="scope-chip" data-scope="fan" onclick="setScope(this,'fan')">منتخب فنون</button>
+    <button class="scope-chip" data-scope="book" onclick="setScope(this,'book')">منتخب کتابیں</button>
+  </div>
+
+  <div id="fanSelect" style="display:none;padding:10px 13px;background:var(--bg2)">
+    <input type="text" class="local-si" placeholder="فن کا نام لکھیں..." oninput="filterAdvFans(this.value)">
+    <div id="advFanList" class="rad-list"></div>
+  </div>
+  
+  <div id="bookSelect" style="display:none;padding:10px 13px;background:var(--bg2)">
+    <input type="text" class="local-si" placeholder="کتاب کا نام لکھیں..." oninput="filterAdvBooks(this.value)">
+    <div id="advBookList" class="rad-list"></div>
+  </div>
+
+  <div class="rcount" id="rc"></div>
+  <div id="sr"></div>
+</div>
+
+<div class="view" id="view-authors">
+  <div class="shead"><div class="shead-title">مصنفین</div></div>
+  <div class="local-search-box">
+    <input type="text" id="localAuthorSearch" class="local-si" placeholder="مصنف کا نام تلاش کریں..." oninput="renderAuthors(this.value)">
+  </div>
+  <div id="alist"></div>
+</div>
+
+<div class="view" id="view-settings">
+  <div class="shead">
+    <button class="back" onclick="history.back()" style="color:var(--glo)">←</button>
+    <div class="shead-title">سیٹنگ</div>
+  </div>
+
+  <div class="sets-section">
+    <div class="sets-title">تھیم (رنگ)</div>
+    <div class="sets-card">
+      <div class="theme-row">
+        <button class="theme-btn tb-light active" id="tbLight" onclick="setTheme('light',this)">روشن</button>
+        <button class="theme-btn tb-dark" id="tbDark" onclick="setTheme('dark',this)">تاریک</button>
+        <button class="theme-btn tb-night" id="tbNight" onclick="setTheme('night',this)">رات</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sets-section">
+    <div class="sets-title">عربی متن کا فونٹ</div>
+    <div class="sets-card">
+      <div class="font-opts" id="arFontOpts">
+        <div class="font-opt active" onclick="setArFont('Lotus',this)">
+          <span class="font-opt-name">Lotus (لوٹس)</span>
+          <span class="font-opt-preview" style="font-family:'Lotus'">بِسْمِ اللهِ</span>
+        </div>
+        <div class="font-opt" onclick="setArFont('AlQalam',this)">
+          <span class="font-opt-name">القلم قرآن مجید</span>
+          <span class="font-opt-preview" style="font-family:'AlQalam'">بِسْمِ اللهِ</span>
+        </div>
+        <div class="font-opt" onclick="setArFont('NoorehIra',this)">
+          <span class="font-opt-name">نورِ ہرا (NoorehIra)</span>
+          <span class="font-opt-preview" style="font-family:'NoorehIra'">بِسْمِ اللهِ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sets-section">
+    <div class="sets-title">پوری کتاب کا سائز (اردو / انگریزی)</div>
+    <div class="sets-card">
+      <div class="fsize-row">
+        <span style="font-size:0.8rem">چھوٹا</span>
+        <input type="range" min="13" max="36" value="17" id="fsizeRange" oninput="setFontSize(this.value)">
+        <span style="font-size:0.8rem">بڑا</span>
+      </div>
+      <p style="text-align:center;margin-top:8px;font-size:0.8rem;color:var(--tx2)">نمونہ: <span id="fsPreview" style="font-family:var(--fur)">یہ اردو کا نمونہ ہے</span></p>
+    </div>
+  </div>
+
+  <div class="sets-section">
+    <div class="sets-title">صرف عربی متن کا سائز</div>
+    <div class="sets-card">
+      <div class="fsize-row">
+        <span style="font-size:0.8rem">چھوٹا</span>
+        <input type="range" min="8" max="25" value="13" id="arFsizeRange" oninput="setArFontSize(this.value)">
+        <span style="font-size:0.8rem">بڑا</span>
+      </div>
+      <p style="text-align:center;margin-top:8px;font-size:0.8rem;color:var(--tx2)">
+        نمونہ: <span id="arFsPreview" class="ar" style="display:inline; background:none; padding:0; border:none; margin:0;">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="view admin-view" id="view-admin">
+  <div class="shead">
+    <button class="back" onclick="history.back()" style="color:var(--glo)">←</button>
+    <div class="shead-title">ایڈمن پینل — ریموٹ کنٹرول</div>
+  </div>
+
+  <div class="admin-s">
+    <div class="admin-st">فنون (شامل / ترمیم / حذف)</div>
+    <div class="aform">
+      <label>نیا فن کا نام</label>
+      <input id="nCatName" placeholder="مثال: شافعی فقہی کتب" dir="rtl">
+      <label>ID (انگریزی، بغیر space)</label>
+      <input id="nCatId" placeholder="shafi-fiqh" dir="ltr">
+      <button class="abtn" onclick="addCat()">فن شامل کریں</button>
+    </div>
+    <div id="catList" style="margin-top:9px"></div>
+  </div>
+
+  <div class="admin-s">
+    <div class="admin-st">مصنفین (شامل / ترمیم / حذف)</div>
+    <div class="aform">
+      <label>نام</label>
+      <input id="nAName" placeholder="مولانا..." dir="rtl">
+      <div class="arow">
+        <div><label>حیات/وفات</label>
+          <select id="nASt"><option value="حیات">حیات</option><option value="وفات">وفات</option></select>
+        </div>
+        <div><label>سن وفات</label>
+          <input id="nADy" type="number" placeholder="1943" dir="ltr">
+        </div>
+      </div>
+      <label>ادارہ</label>
+      <input id="nAIns" placeholder="دار العلوم..." dir="rtl">
+      <button class="abtn" onclick="addAuth()">مصنف شامل کریں</button>
+    </div>
+    <div id="authList" style="margin-top:9px"></div>
+  </div>
+
+  <div class="admin-s">
+    <div class="admin-st">کتابیں (شامل / ترمیم / حذف)</div>
+    <div class="aform">
+      <label>عنوان</label>
+      <input id="nBTitle" placeholder="کتاب کا نام..." dir="rtl">
+      
+      <label>عنوان کا فونٹ (باہر فہرست کے لیے)</label>
+      <select id="nBTitleFont" dir="rtl">
+        <option value="ur">اردو (جمیل نوری)</option>
+        <option value="ar">عربی (لوٹس)</option>
+      </select>
+
+      <label>فہرست کا فونٹ (TOC)</label>
+      <select id="nBTocFont" dir="rtl">
+        <option value="auto">خودکار (زبان کے لحاظ سے)</option>
+        <option value="ur">اردو (جمیل نوری)</option>
+        <option value="ar">عربی (لوٹس)</option>
+      </select>
+
+      <label>مصنف</label>
+      <select id="nBAuth" dir="rtl"></select>
+      <label>فن</label>
+      <select id="nBCat" dir="rtl" onchange="fillSub()"></select>
+      <label>ذیلی فن</label>
+      <select id="nBSub" dir="rtl"></select>
+      <label>زبان (اہم فارمیٹنگ)</label>
+      <select id="nBLang">
+        <option value="ur">اردو (خالص)</option>
+        <option value="ar">عربی (خالص)</option>
+        <option value="ur-ar">اردو + عربی (مکس)</option>
+        <option value="en">انگریزی (English)</option>
+        <option value="en-ar">انگریزی + عربی (English+Arabic)</option>
+      </select>
+      <label>متن فائل (content/ فولڈر میں)</label>
+      <input id="nBFile" placeholder="b001.html" dir="ltr">
+      <label>تعارف</label>
+      <textarea id="nBDesc" placeholder="مختصر تعارف..." dir="rtl"></textarea>
+      
+      <label style="display:flex;align-items:center;gap:8px;margin-top:10px;font-weight:bold;cursor:pointer;background:var(--bg2);padding:8px;border-radius:6px;">
+        <input type="checkbox" id="nBArbHead" style="width:18px;height:18px;margin:0;">
+        کتاب کے اندر کی ہیڈنگز کے لیے 'Traditional Arabic' استعمال کریں
+      </label>
+      
+      <button class="abtn" onclick="addBook()">کتاب شامل کریں</button>
+    </div>
+    <div id="bookList2" style="margin-top:9px"></div>
+  </div>
+
+  <div class="admin-s">
+    <div class="admin-st">JSON فائلیں ڈاؤن لوڈ کریں</div>
+    <div class="aform">
+      <div class="arow">
+        <button class="abtn abtn-sec" onclick="dlJSON('categories')">categories.json</button>
+        <button class="abtn abtn-sec" onclick="dlJSON('authors')">authors.json</button>
+      </div>
+      <button class="abtn" onclick="dlJSON('books')">books.json ڈاؤن لوڈ</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<nav class="bnav">
+  <button class="nbtn active" id="nav-home" onclick="goHome()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    ہوم
+  </button>
+  <button class="nbtn" id="nav-search" onclick="showView('search');setTimeout(()=>document.getElementById('si').focus(),80)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    تلاش
+  </button>
+  <button class="nbtn" id="nav-authors" onclick="showView('authors')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+    مصنفین
+  </button>
+  <button class="nbtn" id="nav-settings" onclick="showView('settings')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    سیٹنگ
+  </button>
+</nav>
+
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <h3 id="modalTitle">ترمیم</h3>
+    <div id="modalBody"></div>
+    <div class="modal-btns">
+      <button class="mbtn-save" onclick="saveEdit()">محفوظ کریں</button>
+      <button class="mbtn-cancel" onclick="closeModal()">منسوخ</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-// ===== STATE =====
-let bookData = [];
-let bookmarks = JSON.parse(localStorage.getItem('tb_bm_v2') || '[]');
-let currentQuery = '';
-let searchMode = 'exact';
-let urduSize = parseInt(localStorage.getItem('tb_urdu_sz')) || 20;
-let arabicSize = parseInt(localStorage.getItem('tb_arabic_sz')) || 26;
-let currentTheme = localStorage.getItem('tb_theme') || 'night';
-
-// ===== INIT =====
-applyTheme();
-applyFonts();
-updateClock();
-setInterval(updateClock, 30000);
-
-// Load book data
-const dataUrl = 'book_data.json';
-showLoading(true);
-
-fetch(dataUrl)
-    .then(r => r.json())
-    .then(data => {
-        bookData = data;
-        showLoading(false);
-        document.getElementById('startBtn').textContent = 'کتاب شروع کریں ←';
-        renderAllPages();
-        renderBookmarks();
-        buildToc();
-    })
-    .catch(err => {
-        showLoading(false);
-        document.getElementById('startBtn').textContent = 'ڈیٹا لوڈ نہیں ہوا!';
-        console.error(err);
-        demoMode();
-    });
-
-function demoMode() {
-    bookData = [
-        {
-            volume: "1", page_number: 20, chapter_h1: "بسم اللہ الرحمن الرحیم",
-            content: "[H1]بسم اللہ الرحمن الرحیم[/H1]\n\nیہ کتاب تحفۃ الباری فی الفقہ الشافعی ہے۔ اس کتاب میں شافعی فقہ کے تمام مسائل مدلل اور مفصل طریقے سے بیان کیے گئے ہیں۔\n\n<ar>الحمد لله رب العالمين والصلاة والسلام على أشرف الأنبياء والمرسلين</ar>\n\nتمام تعریفیں اللہ تعالیٰ کے لیے ہیں جو سارے جہانوں کا رب ہے، اور درود و سلام ہو تمام انبیاء اور رسولوں میں سب سے افضل پر۔"
-        },
-        {
-            volume: "2", page_number: 30, chapter_h1: "کتاب الطہارۃ",
-            content: "[H1]کتاب الطہارۃ[/H1]\n\n[H2]باب الماء وأقسامه[/H2]\n\nطہارت اسلامی عبادات کی بنیاد ہے۔ پانی کی اقسام اور ان کے احکام درج ذیل ہیں:\n\n<ar>الماء الطهور هو الذي تصح به الطهارة</ar>\n\nطہور پانی وہ ہے جس سے طہارت صحیح ہوتی ہے۔"
+document.addEventListener("DOMContentLoaded", () => {
+    const splContainer = document.getElementById('spl-particles');
+    if(splContainer) {
+        for(let i = 0; i < 25; i++) {
+          const p = document.createElement('div');
+          p.className = 'spl-particle';
+          p.style.left = Math.random() * 100 + '%';
+          p.style.animationDuration = (4 + Math.random() * 8) + 's';
+          p.style.animationDelay = (Math.random() * 5) + 's';
+          p.style.width = p.style.height = (1 + Math.random() * 3) + 'px';
+          p.style.opacity = (0.2 + Math.random() * 0.6);
+          splContainer.appendChild(p);
         }
-    ];
-    document.getElementById('startBtn').textContent = 'نمونہ دیکھیں (ڈیمو موڈ) ←';
-    renderAllPages();
-    renderBookmarks();
-    buildToc();
-}
-
-// ===== SPLASH =====
-function enterApp() {
-    if (bookData.length === 0) return;
-    const splash = document.getElementById('splash');
-    splash.style.opacity = '0';
-    setTimeout(() => {
-        splash.style.display = 'none';
-        document.getElementById('app').style.display = 'flex';
-    }, 600);
-}
-
-// ===== CLOCK =====
-function updateClock() {
-    const now = new Date();
-    const h = now.getHours().toString().padStart(2,'0');
-    const m = now.getMinutes().toString().padStart(2,'0');
-    document.getElementById('clock').textContent = `${h}:${m}`;
-}
-
-// ===== TABS =====
-function switchTab(tab, el) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    if (el) el.classList.add('active');
-    if (tab !== 'book') {
-        document.getElementById('contentArea').scrollTop = 0;
     }
-    closePdfInternal();
+    setTimeout(() => {
+        const sp = document.getElementById('splashScreen');
+        if(sp) {
+            sp.style.opacity = '0';
+            sp.style.pointerEvents = 'none';
+            setTimeout(() => sp.remove(), 800);
+        }
+    }, 5000); 
+});
+
+const SECRET_KEY = 'taloja786';
+let adminUnlocked = false;
+
+function checkAdminAccess() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('key') === SECRET_KEY) {
+    adminUnlocked = true;
+    window.history.replaceState({}, '', window.location.pathname);
+    renderAdminLists(); fillAdminSelects(); showView('admin');
+  }
 }
 
-// ===== PAGE RENDER =====
-function formatContent(text) {
-    let html = text;
-    html = html.replace(/\[H1\]([\s\S]*?)\[\/H1\]/g, '<div class="book-heading">$1</div>');
-    html = html.replace(/\[H2\]([\s\S]*?)\[\/H2\]/g, '<div class="book-heading-h2">$1</div>');
-    html = html.replace(/\[H3\]([\s\S]*?)\[\/H3\]/g, '<div class="book-heading-h3">$1</div>');
+let cats=[],auths=[],books=[],idx=[];
+let curFan=null, curSid=null, rdFrom='home';
+let fsize=17,srchScope='all';
+let arFsize=12.5; 
+let editType=null,editId=null,contentCache={};
+let deferredPrompt=null;
+
+let selectedAdvFans = new Set();
+let selectedAdvBooks = new Set();
+
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  document.getElementById('installBanner').classList.add('show');
+});
+function installPWA(){
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(()=>{deferredPrompt=null;dismissInstall();});
+}
+function dismissInstall(){document.getElementById('installBanner').classList.remove('show')}
+
+async function load(){
+  try{
+    const[c,a,b]=await Promise.all([
+      fetch('data/categories.json').then(r=>r.json()),
+      fetch('data/authors.json').then(r=>r.json()),
+      fetch('data/books.json').then(r=>r.json())
+    ]);
+    cats=c;auths=a;books=b;
+    buildIdx();renderHome();renderAuthors();
+    renderAdminLists();fillAdminSelects();fillSearchSelects();
+    loadSettings();
     
-    /* یہاں div کی جگہ span کر دیا گیا ہے تاکہ عربی ٹیکسٹ اردو کے ساتھ ہی رہے */
-    html = html.replace(/<ar>([\s\S]*?)<\/ar>/g, '<span class="arabic-text">$1</span>');
-    
-    html = html.replace(/\n/g, '<br>');
-    return html;
+    history.replaceState({view: 'home'}, '', '#home');
+  }catch(e){
+    document.getElementById('fgrid').innerHTML='<div class="loading">ڈیٹا لوڈ نہیں ہوا</div>';
+  }
 }
 
-function renderAllPages() {
-    const htmls = bookData.map((page, idx) => {
-        let html = formatContent(page.content || '');
-        return `
-        <div class="page-block" id="page-idx-${idx}">
-            <div class="urdu-text">${html}</div>
-            <div class="page-footer">
-                <span>جلد: ${page.volume} | صفحہ: ${page.page_number}</span>
-                <div class="page-footer-btns">
-                    <button class="page-action-btn" onclick="saveBookmark(${idx})">🔖 محفوظ کریں</button>
-                    <button class="page-action-btn" onclick="openPdfAt(${page.volume}, ${page.page_number})">📄 PDF دیکھیں</button>
-                </div>
-            </div>
-        </div>`;
-    });
-    document.getElementById('bookContent').innerHTML = htmls.join('');
+function buildIdx(){
+  idx=books.map(b=>{
+    const a=auths.find(x=>x.id===b.author_id);
+    const c=cats.find(x=>x.id===b.category);
+    const s=c?.subcategories?.find(x=>x.id===b.subcategory);
+    return{...b,an:a?.name||'',cn:c?.name||'',sn:s?.name||'',
+      searchAll:[b.title,a?.name,c?.name,s?.name,b.description||''].join(' ')};
+  });
 }
 
-// ===== HIGHLIGHT & SEARCH =====
-function highlightQuery(html, query, mode) {
-    if (!query || query.length < 2) return html;
+function renderHome(){
+  document.getElementById('sB').textContent=books.length;
+  document.getElementById('sA').textContent=auths.length;
+  document.getElementById('sF').textContent=cats.length;
+  const mx=Math.max(...cats.map(c=>books.filter(b=>b.category===c.id).length),1);
+  document.getElementById('fgrid').innerHTML=cats.length?cats.map(c=>{
+    const n=books.filter(b=>b.category===c.id).length;
+    const p=Math.round(n/mx*100);
+    return`<div class="fcard" onclick="openFan('${c.id}')">
+      <div class="fcard-name">${c.name}</div>
+      <div class="fcard-count">${n} کتاب</div>
+      <div class="fbar"><div class="fbar-fill" style="width:${p}%"></div></div>
+    </div>`;
+  }).join(''):'<div class="loading">ابھی کوئی فن نہیں — ایڈمن سے شامل کریں</div>';
+}
+
+function openFan(fid){
+  curFan=fid; curSid=null;
+  document.getElementById('localBookSearch').value = ''; 
+  const c=cats.find(x=>x.id===fid);
+  document.getElementById('bkTitle').textContent=c.name;
+  renderBList(fid,null);
+  showView('books');
+}
+
+function renderBList(fid, sid, query = ''){
+  let f=books.filter(b=>b.category===fid);
+  if(sid) f=f.filter(b=>b.subcategory===sid);
+  if(query) {
+      let q = query.toLowerCase();
+      f = f.filter(b => b.title.toLowerCase().includes(q));
+  }
+  document.getElementById('blist').innerHTML=f.length?f.map(bHTML).join(''):'<div class="nores">کوئی کتاب نہیں ملی</div>';
+}
+
+function bHTML(b){
+  const a=auths.find(x=>x.id===b.author_id);
+  const ai=a?`${a.name}${a.status==='وفات'?' (م '+a.death_year+')':' (حیات)'}`:' ';
+  const titleClass = b.title_font === 'ar' ? 'font-ar' : 'font-ur';
+  return`<div class="bitem" onclick="openBook('${b.id}')">
+    <div class="bicon">📖</div>
+    <div class="binfo">
+      <div class="btitle ${titleClass}">${b.title}</div>
+      <div class="bauthor">${ai}</div>
+    </div>
+  </div>`;
+}
+
+function adjFont(d){
+  fsize=Math.min(36,Math.max(14,fsize+(d*2))); 
+  document.documentElement.style.setProperty('--ur-fs', fsize + 'px');
+  document.body.style.setProperty('--ur-fs', fsize + 'px');
+  if(document.getElementById('fsizeRange')) document.getElementById('fsizeRange').value=fsize;
+  localStorage.setItem('fsize',fsize);
+}
+
+function setFontSize(v){
+  fsize=parseInt(v);
+  document.documentElement.style.setProperty('--ur-fs', v + 'px');
+  document.body.style.setProperty('--ur-fs', v + 'px');
+  if(document.getElementById('fsPreview')) document.getElementById('fsPreview').style.fontSize=v+'px';
+  localStorage.setItem('fsize',v);
+}
+
+function setArFontSize(v){
+  arFsize = v;
+  let emValue = (v / 10) + 'em'; 
+  document.documentElement.style.setProperty('--ar-fs', emValue);
+  document.body.style.setProperty('--ar-fs', emValue);
+  localStorage.setItem('arFsize', v);
+}
+
+async function openBook(bid, searchPayload = null){
+  const b=books.find(x=>x.id===bid);if(!b)return;
+  const a=auths.find(x=>x.id===b.author_id);
+  
+  const rtitleEl = document.getElementById('rtitle');
+  rtitleEl.textContent = b.title;
+  rtitleEl.className = 'rtitle ' + (b.title_font === 'ar' ? 'font-ar' : 'font-ur');
+  
+  document.getElementById('rmeta').textContent=a?.name||'';
+  let rbody = document.getElementById('rbody');
+  rbody.innerHTML='<div class="loading">لوڈ ہو رہا ہے...</div>';
+  
+  const scroller = document.getElementById('bookScroller');
+  if(scroller) scroller.value = 0;
+
+  showView('reader');
+  
+  try{
+    let htmlContent = '';
+    if(contentCache[bid]){
+      htmlContent = contentCache[bid];
+    }else{
+      const r=await fetch('content/'+b.content_file);
+      htmlContent = await r.text();
+      contentCache[bid]=htmlContent;
+    }
     
-    if (mode === 'exact') {
-        const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        return html.replace(new RegExp(`(${escaped})`, 'gi'), '<span class="highlight">$1</span>');
+    rbody.innerHTML = htmlContent;
+    rbody.className = 'rbody'; 
+    
+    if (b.lang === 'ur') {
+        rbody.classList.add('pure-urdu');
+    } else if (b.lang === 'ar') {
+        rbody.classList.add('pure-arabic');
+    } else if (b.lang === 'ur-ar') {
+        rbody.classList.add('mix-urdu-arabic');
+    } else if (b.lang === 'en' || b.lang === 'en-ar') {
+        rbody.classList.add('lang-en');
+    }
+
+    if(b.has_arab_headings || b.lang === 'ar') {
+        rbody.classList.add('arab-headings');
+    }
+
+    let tocClass = 'font-ur';
+    if(b.lang === 'ar') { tocClass = 'font-ar'; }
+    else if (b.lang === 'ur') { tocClass = 'font-ur'; }
+    else if (b.lang === 'en' || b.lang === 'en-ar') { tocClass = 'font-ur'; }
+    else { tocClass = b.toc_font === 'ar' ? 'font-ar' : 'font-ur'; }
+    
+    generateTOC(tocClass);
+
+    if(searchPayload) {
+       let parts = searchPayload.split('|');
+       let query = decodeURIComponent(parts[0]);
+       let matchMode = parts[1];
+       let occurrenceIndex = parseInt(parts[2]) || 0;
+       highlightAndScroll(query, matchMode, occurrenceIndex);
     } else {
-        const words = query.split(' ').filter(Boolean);
-        let res = html;
-        words.forEach(w => {
-            const escaped = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            res = res.replace(new RegExp(`(${escaped})`, 'gi'), '<span class="highlight">$1</span>');
-        });
-        return res;
-    }
-}
-
-function setMode(mode) {
-    searchMode = mode;
-    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('mode' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
-}
-
-// ===== SEARCH =====
-let searchTimeout = null; // ٹائپنگ کے دوران موبائل ہینگ ہونے سے بچانے کے لیے
-
-function onSearchInput(val) {
-    // اگر صارف ٹائپ کر رہا ہے تو پچھلی سرچ کو کینسل کریں
-    if (searchTimeout) {
-        clearTimeout(searchTimeout);
+       window.scrollTo(0,0);
     }
 
-    if (!val.trim()) {
-        currentQuery = '';
-        document.getElementById('resultCount').style.display = 'none';
-        document.getElementById('searchResults').innerHTML = '';
-        
-        // Remove highlights from book text if input cleared
-        document.querySelectorAll('.highlight').forEach(el => {
-            const parent = el.parentNode;
-            parent.replaceChild(document.createTextNode(el.textContent), el);
-            parent.normalize();
-        });
-        return; // اگر باکس خالی ہے تو مزید آگے نہ بڑھیں
+  }catch{
+    rbody.innerHTML='<div class="nores">متن لوڈ نہیں ہوا۔</div>';
+  }
+}
+
+function generateTOC(tocClass) {
+    const rbody = document.getElementById('rbody');
+    const headings = rbody.querySelectorAll('h1, h2, h3');
+    const tocList = document.getElementById('tocList');
+    tocList.innerHTML = '';
+
+    if(headings.length === 0) {
+        tocList.innerHTML = '<div style="padding:20px;text-align:center;color:var(--tx2);font-size:0.85rem;">اس کتاب میں کوئی فہرست موجود نہیں ہے۔</div>';
+        return;
     }
 
-    // 300 ملی سیکنڈ کا انتظار کریں، پھر خود بخود تلاش (Search) شروع کر دیں
-    searchTimeout = setTimeout(() => {
-        doSearch();
-    }, 300);
-}
+    let html = '';
+    let inSub = false;
 
-function doSearch() {
-    const query = document.getElementById('searchInput').value.trim();
-    if (!query || bookData.length === 0) return;
-    currentQuery = query;
+    headings.forEach((h, i) => {
+        let id = 'h-' + i;
+        h.id = id;
+        let lvl = h.tagName.toLowerCase();
+        let txt = h.innerText.trim();
 
-    const results = bookData.filter(p => {
-        const txt = (p.content || '').toLowerCase();
-        const q = query.toLowerCase();
-        if (searchMode === 'exact') return txt.includes(q);
-        const words = q.split(' ').filter(Boolean);
-        if (searchMode === 'all') return words.every(w => txt.includes(w));
-        return words.some(w => txt.includes(w));
-    });
-
-    const rc = document.getElementById('resultCount');
-    rc.style.display = 'block';
-    rc.textContent = `${results.length} نتائج ملے`;
-
-    const box = document.getElementById('searchResults');
-    if (results.length === 0) { box.innerHTML = '<div class="bm-empty">کچھ نہیں ملا۔</div>'; return; }
-
-    box.innerHTML = results.slice(0, 80).map(res => {
-        const idx = bookData.indexOf(res);
-        let snippet = (res.content || '').replace(/<[^>]*>/g,'').replace(/\[[^\]]*\]/g,'').substring(0,100) + '...';
-        snippet = highlightQuery(snippet, query, searchMode);
-        
-        return `<div class="list-card" onclick="jumpTo(${idx})">
-            <div class="list-card-title">${res.chapter_h1 || 'متن'}</div>
-            <div style="color:var(--urdu-color);font-size:14px;margin:4px 0;line-height:1.8;">${snippet}</div>
-            <div class="list-card-sub">جلد: ${res.volume} | صفحہ: ${res.page_number}</div>
-        </div>`;
-    }).join('');
-}
-
-// ===== JUMP =====
-function jumpTo(idx) {
-    // 1. پہلے لوڈنگ اسکرین دکھائیں تاکہ صارف کو لگے کہ کام ہو رہا ہے
-    showLoading(true);
-
-    // 2. تھوڑا سا وقفہ تاکہ براؤزر ہینگ ہونے کے بجائے لوڈنگ دکھا سکے
-    setTimeout(() => {
-        const el = document.getElementById('page-idx-' + idx);
-        
-        if (el) {
-            // ہائی لائٹ کرنے کا کام ٹیب دکھانے سے پہلے ہی کر لیں (اس سے اسپیڈ تیز ہوتی ہے)
-            if (currentQuery) {
-                const page = bookData[idx];
-                let html = formatContent(page.content || '');
-                html = highlightQuery(html, currentQuery, searchMode);
-                el.querySelector('.urdu-text').innerHTML = html;
+        if(lvl === 'h1') {
+            if(inSub) { html += `</div></div>`; inSub = false; } 
+            
+            let hasChildren = false;
+            for(let j = i+1; j < headings.length; j++){
+                if(headings[j].tagName.toLowerCase() === 'h1') break;
+                hasChildren = true; break;
             }
-            
-            // کتاب والے ٹیب پر شفٹ ہوں
-            switchTab('book', document.getElementById('navBook'));
-            
-            // سب سے اہم تبدیلی: 'smooth' کی جگہ 'auto' کر دیا گیا ہے تاکہ بغیر اینیمیشن کے فوراً جمپ کرے
-            el.scrollIntoView({ behavior: 'auto', block: 'start' });
-        }
-        
-        // 3. جمپ ہونے کے فوراً بعد لوڈنگ ہٹا دیں
-        showLoading(false);
-    }, 10); // 10 ملی سیکنڈ کا معمولی وقفہ
-}
 
-function showJumpDialog() { document.getElementById('jumpDialog').classList.add('open'); }
-function closeJumpDialog() { document.getElementById('jumpDialog').classList.remove('open'); }
-function doJump() {
-    const vol = document.getElementById('jumpVol').value;
-    const page = parseInt(document.getElementById('jumpPage').value);
-    const idx = bookData.findIndex(p => p.volume == vol && p.page_number == page);
-    if (idx !== -1) { jumpTo(idx); closeJumpDialog(); }
-    else alert('یہ صفحہ نہیں ملا!');
-}
-
-// ===== BOOKMARKS =====
-function saveBookmark(idx) {
-    if (!bookData.length) return;
-    const page = bookData[idx];
-    const exists = bookmarks.find(b => b.vol == page.volume && b.page == page.page_number);
-    if (exists) { alert('یہ صفحہ پہلے سے محفوظ ہے! 🔖'); return; }
-    bookmarks.push({ vol: page.volume, page: page.page_number, title: page.chapter_h1 || 'محفوظ صفحہ', idx: idx });
-    localStorage.setItem('tb_bm_v2', JSON.stringify(bookmarks));
-    alert('محفوظ کر لیا گیا! 🔖');
-    renderBookmarks();
-}
-
-function deleteBookmark(i) {
-    bookmarks.splice(i, 1);
-    localStorage.setItem('tb_bm_v2', JSON.stringify(bookmarks));
-    renderBookmarks();
-}
-
-function renderBookmarks() {
-    const box = document.getElementById('bookmarksList');
-    if (!bookmarks.length) { box.innerHTML = '<div class="bm-empty">کوئی مقام محفوظ نہیں ہے۔</div>'; return; }
-    box.innerHTML = bookmarks.map((bm,i) => `
-        <div class="bm-card">
-            <button class="bm-del" onclick="deleteBookmark(${i})">حذف</button>
-            <div class="bm-info" onclick="jumpTo(${bm.idx})">
-                <div class="bm-title">${bm.title}</div>
-                <div class="bm-vol">جلد: ${bm.vol} | صفحہ: ${bm.page}</div>
-            </div>
-        </div>`).join('');
-}
-
-// ===== TOC =====
-function buildToc() {
-    const h1Regex = /\[H1\]([\s\S]*?)\[\/H1\]/g;
-    const h2Regex = /\[H2\]([\s\S]*?)\[\/H2\]/g;
-    const items = [];
-    bookData.forEach((page, idx) => {
-        let m;
-        const content = page.content || '';
-        h1Regex.lastIndex = 0;
-        while ((m = h1Regex.exec(content)) !== null) {
-            items.push({ title: m[1].trim(), level: 1, sub: `جلد: ${page.volume} | صفحہ: ${page.page_number}`, idx });
-        }
-        h2Regex.lastIndex = 0;
-        while ((m = h2Regex.exec(content)) !== null) {
-            items.push({ title: m[1].trim(), level: 2, sub: `جلد: ${page.volume} | صفحہ: ${page.page_number}`, idx });
+            if(hasChildren) {
+                html += `<div class="toc-item-wrap">
+                            <div class="toc-item h1-item">
+                                <span class="t-txt ${tocClass}" onclick="scrollToHeading('${id}')">${txt}</span>
+                                <span class="t-ico" onclick="toggleTocSub('sub-${i}', this)">▼</span>
+                            </div>
+                            <div class="toc-sub" id="sub-${i}" style="display:none;">`;
+                inSub = true;
+            } else {
+                html += `<div class="toc-item-wrap">
+                            <div class="toc-item h1-item" onclick="scrollToHeading('${id}')">
+                                <span class="t-txt ${tocClass}">${txt}</span>
+                            </div>
+                         </div>`;
+            }
+        } else {
+            html += `<div class="toc-item ${lvl}-item" onclick="scrollToHeading('${id}')">
+                        <span class="t-txt ${tocClass}">${txt}</span>
+                     </div>`;
         }
     });
-
-    const tocBody = document.getElementById('tocBody');
-    if (!items.length) { tocBody.innerHTML = '<div class="bm-empty">فہرست خالی ہے</div>'; return; }
-    tocBody.innerHTML = items.map(it => `
-        <div class="toc-item h${it.level}" onclick="tocJump(${it.idx})">
-            <div class="toc-title">${it.title}</div>
-            <div class="toc-sub">${it.sub}</div>
-        </div>`).join('');
+    
+    if(inSub) html += `</div></div>`; 
+    tocList.innerHTML = html;
 }
 
-function tocJump(idx) { jumpTo(idx); closeDrawer(); }
-
-function toggleDrawer() {
-    const d = document.getElementById('tocDrawer');
-    const o = document.getElementById('drawerOverlay');
-    d.classList.toggle('open');
-    o.style.display = d.classList.contains('open') ? 'block' : 'none';
+function toggleTocSub(id, ico) {
+    let el = document.getElementById(id);
+    if(el.style.display === 'none') {
+        el.style.display = 'block';
+        ico.classList.add('open');
+    } else {
+        el.style.display = 'none';
+        ico.classList.remove('open');
+    }
 }
-function closeDrawer() {
+
+function openToc() {
+    document.getElementById('tocBg').classList.add('open');
+    document.getElementById('tocDrawer').classList.add('open');
+}
+
+function closeToc() {
+    document.getElementById('tocBg').classList.remove('open');
     document.getElementById('tocDrawer').classList.remove('open');
-    document.getElementById('drawerOverlay').style.display = 'none';
 }
 
-// ===== PDF =====
-// PDF.js لائبریری کی سیٹنگ
-if (window['pdfjs-dist/build/pdf']) {
-    window.pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-}
-
-let pdfDoc = null;
-
-function getPdfPage(vol, txtPage) {
-    vol = parseInt(vol);
-    txtPage = parseInt(txtPage);
-    if (vol === 1) return txtPage;
-    if (vol === 2) return txtPage + 463;
-    if (vol === 3) return txtPage + 721;
-    return 1;
-}
-
-function openPdfAt(vol, txtPage) {
-    const pdfPage = getPdfPage(vol, txtPage);
-    const pdfUrl = 'https://masjidboard.github.io/Tohfat%20ul%20Bari%20Complete.pdf';
-    
-    document.getElementById('pdfBar').classList.add('visible');
-    document.getElementById('mainToolbar').style.display = 'none';
-    document.getElementById('contentArea').style.display = 'none';
-    document.querySelector('.bottom-nav').style.display = 'none';
-    
-    const container = document.getElementById('pdfContainer');
-    container.style.display = 'block';
-    container.scrollTop = 0; // سکرول اوپر کرنے کے لیے
-    
-    showLoading(true);
-
-    // اگر پی ڈی ایف پہلی بار کھل رہی ہے تو لوڈ کرے گا
-    // اگر پی ڈی ایف پہلی بار کھل رہی ہے تو لوڈ کرے گا
-    if (!pdfDoc) {
-        // اردو اور عربی حروف کو جوڑنے کے لیے نئے ورژن کی سیٹنگ
-        const loadingTask = pdfjsLib.getDocument({
-            url: pdfUrl,
-            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-            cMapPacked: true,
-            standardFontDataUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/standard_fonts/'
-        });
+function scrollToHeading(id) {
+    closeToc();
+    let el = document.getElementById(id);
+    if(el) {
+        let offset = 120; 
+        let top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({top: top, behavior: 'smooth'});
         
-        loadingTask.promise.then(function(pdfDoc_) {
-            pdfDoc = pdfDoc_;
-            renderPdfPage(pdfPage);
-        }).catch(function(err) {
-            showLoading(false);
-            alert("پی ڈی ایف لوڈ کرنے میں مسئلہ آیا: " + err.message);
-        });
-    } else {
-        renderPdfPage(pdfPage); // اگر لوڈ ہو چکی ہے تو ڈائریکٹ صفحہ دکھائے گا
+        let originalBg = el.style.backgroundColor;
+        el.style.backgroundColor = "var(--glo)";
+        setTimeout(() => { el.style.backgroundColor = originalBg || "transparent"; }, 1000);
     }
 }
 
-function renderPdfPage(pageNum) {
-    pdfDoc.getPage(pageNum).then(function(page) {
-        const canvas = document.getElementById('pdfCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // 1. پیج کا اصل سائز معلوم کریں (بغیر زوم کے)
-        let unscaledViewport = page.getViewport({ scale: 1.0 });
-        
-        // 2. کنٹینر (اسکرین) کی چوڑائی معلوم کریں
-        let containerWidth = document.getElementById('pdfContainer').clientWidth;
-        
-        // 3. اسکرین کے حساب سے فٹ (Fit to width) کرنے کا اسکیل نکالیں 
-        // (0.95 اس لیے لگایا ہے تاکہ دائیں بائیں تھوڑی سی خالی جگہ/مارجن رہے اور پیج اچھا لگے)
-        let scale = (containerWidth / unscaledViewport.width) * 0.95;
-        
-        // کمپیوٹر کی بہت بڑی اسکرین پر پی ڈی ایف کو حد سے زیادہ بڑا ہونے سے روکنے کے لیے ایک حد (Limit)
-        if (scale > 1.6) { scale = 1.6; }
-        
-        const viewport = page.getViewport({ scale: scale });
-        
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+window.addEventListener('scroll', () => {
+    const scroller = document.getElementById('bookScroller');
+    const viewReader = document.getElementById('view-reader');
+    if(scroller && viewReader.classList.contains('active')) {
+        let st = window.scrollY;
+        let sh = document.documentElement.scrollHeight - window.innerHeight;
+        if(sh > 0) {
+            scroller.value = (st / sh) * 100;
+        }
+    }
+});
 
-        const renderContext = {
-            canvasContext: ctx,
-            viewport: viewport
-        };
-        
-        page.render(renderContext).promise.then(function() {
-            showLoading(false);
+function scrollBookTo(val) {
+    let sh = document.documentElement.scrollHeight - window.innerHeight;
+    window.scrollTo({top: (val / 100) * sh, behavior: 'instant'});
+}
+
+function highlightAndScroll(query, matchMode, occurrenceIndex) {
+  let rbody = document.getElementById('rbody');
+  let content = rbody.innerHTML;
+  
+  let qLower = query.trim().toLowerCase();
+  let ts = qLower.split(/\s+/).filter(Boolean);
+
+  if (matchMode === 'exact') {
+      let exactQ = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      let regex = new RegExp(`(?![^<]+>)(${exactQ})`, 'gi');
+      rbody.innerHTML = content.replace(regex, `<mark class="highlight">$1</mark>`);
+  } else {
+      let words = [...ts].sort((a,b) => b.length - a.length);
+      let pattern = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+      if (pattern) {
+          let regex = new RegExp(`(?![^<]+>)(${pattern})`, 'gi');
+          rbody.innerHTML = content.replace(regex, `<mark class="highlight">$1</mark>`);
+      }
+  }
+  
+  setTimeout(() => {
+      let blocks = rbody.querySelectorAll('p, h1, h2, h3, h4, h5, h6, tr, li');
+      let matchingBlocks = [];
+
+      for (let i = 0; i < blocks.length; i++) {
+          let p = blocks[i];
+          let pText = p.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+          if (pText.length < 3) continue;
+
+          let isMatch = false;
+          if (matchMode === 'exact') {
+              isMatch = pText.includes(qLower);
+          } else if (matchMode === 'all') {
+              isMatch = ts.every(t => pText.includes(t));
+          } else if (matchMode === 'any') {
+              isMatch = ts.some(t => pText.includes(t));
+          }
+
+          if (isMatch) {
+              matchingBlocks.push(p);
+          }
+      }
+
+      let targetBlock = matchingBlocks[occurrenceIndex];
+
+      if (targetBlock) {
+          let offset = 70;
+          let top = targetBlock.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({top: top, behavior: 'smooth'});
+
+          let originalBg = targetBlock.style.backgroundColor;
+          targetBlock.style.backgroundColor = "rgba(232, 201, 122, 0.4)";
+          targetBlock.style.borderRadius = "5px";
+          targetBlock.style.transition = "background-color 0.5s";
+
+          setTimeout(() => { 
+              targetBlock.style.backgroundColor = originalBg || "transparent"; 
+          }, 3500);
+      } else {
+          let firstMark = rbody.querySelector('mark.highlight');
+          if(firstMark) {
+              let top = firstMark.getBoundingClientRect().top + window.scrollY - 70;
+              window.scrollTo({top: top, behavior: 'smooth'});
+          }
+      }
+  }, 400);
+}
+
+function setScope(btn,scope){
+  srchScope=scope;
+  document.querySelectorAll('.scope-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fanSelect').style.display=scope==='fan'?'block':'none';
+  document.getElementById('bookSelect').style.display=scope==='book'?'block':'none';
+  doSearch();
+}
+
+function hideSearchDropdowns() {
+    document.getElementById('fanSelect').style.display = 'none';
+    document.getElementById('bookSelect').style.display = 'none';
+}
+
+function fillSearchSelects(){
+  renderAdvFanList();
+  renderAdvBookList();
+}
+
+function toggleFanCheck(id, isChecked) {
+    if(isChecked) selectedAdvFans.add(id); else selectedAdvFans.delete(id);
+    doSearch();
+}
+function toggleBookCheck(id, isChecked) {
+    if(isChecked) selectedAdvBooks.add(id); else selectedAdvBooks.delete(id);
+    doSearch();
+}
+
+function renderAdvFanList(query = '') {
+    let filtered = cats;
+    if(query) {
+        let q = query.toLowerCase();
+        filtered = cats.filter(c => c.name.toLowerCase().includes(q));
+    }
+    document.getElementById('advFanList').innerHTML = filtered.map(c=>`
+      <label class="rad-lbl">
+        <input type="checkbox" value="${c.id}" ${selectedAdvFans.has(c.id)?'checked':''} onchange="toggleFanCheck('${c.id}', this.checked)"> 
+        <span>${c.name}</span>
+      </label>`).join('');
+}
+
+function renderAdvBookList(query = '') {
+    let filtered = books;
+    if(query) {
+        let q = query.toLowerCase();
+        filtered = books.filter(b => b.title.toLowerCase().includes(q));
+    }
+    document.getElementById('advBookList').innerHTML = filtered.map(b=>`
+      <label class="rad-lbl">
+        <input type="checkbox" value="${b.id}" ${selectedAdvBooks.has(b.id)?'checked':''} onchange="toggleBookCheck('${b.id}', this.checked)"> 
+        <span>${b.title}</span>
+      </label>`).join('');
+}
+
+function filterAdvFans(val) { renderAdvFanList(val); }
+function filterAdvBooks(val) { renderAdvBookList(val); }
+
+function getSnippetFromBlock(text, terms, mode, exactQuery){
+    let snip = text;
+    if(snip.length > 200) {
+        let firstTerm = mode === 'exact' ? exactQuery : terms[0];
+        // Try normal search first, then Arabic-normalized search
+        let i = snip.toLowerCase().indexOf(firstTerm.toLowerCase());
+        if(i === -1) i = normalizeAr(snip).indexOf(normalizeAr(firstTerm.toLowerCase()));
+        if(i > -1) {
+            let s = Math.max(0, i - 60);
+            let e = Math.min(snip.length, i + 140);
+            snip = (s > 0 ? '...' : '') + snip.slice(s, e) + (e < snip.length ? '...' : '');
+        }
+    }
+    // Try to highlight - use try/catch for special regex chars
+    if(mode === 'exact') {
+        try { snip = snip.replace(new RegExp(exactQuery.replace(/[.*+?^${}()|[\]\]/g,'\$&'), 'gi'), m => `<mark class="highlight">${m}</mark>`); } catch(e){}
+    } else {
+        terms.forEach(t => {
+            try { snip = snip.replace(new RegExp(t.replace(/[.*+?^${}()|[\]\]/g,'\$&'), 'gi'), m => `<mark class="highlight">${m}</mark>`); } catch(e){}
         });
-    });
+    }
+    return snip;
 }
 
-function closePdf() { closePdfInternal(); }
-function closePdfInternal() {
-    const container = document.getElementById('pdfContainer');
-    if (container.style.display === 'none') return;
-    container.style.display = 'none';
+function normalizeAr(str){
+  // Remove Arabic/Urdu diacritics (harakat, tanwin, shadda, sukun, maddah etc.)
+  str = str.replace(/[ؐ-ًؚ-ٰٟۖ-ۜ۟-۪ۤۧۨ-ۭ]/g, '');
+  // Normalize alef variants آأإٱ → ا
+  str = str.replace(/[آأإٱ]/g, 'ا');
+  // Normalize kaf: Arabic ك + Urdu ک → ك
+  str = str.replace(/[كک]/g, 'ك');
+  // Normalize yeh: Arabic ي + Urdu ی + alef maqsura ى → ي
+  str = str.replace(/[يیى]/g, 'ي');
+  // Normalize heh: Arabic ه + Urdu ہ + do chashmi ھ + teh marbuta ة → ه
+  str = str.replace(/[هہھة]/g, 'ه');
+  // Normalize noon: ن + noon ghunna ں → ن
+  str = str.replace(/[نں]/g, 'ن');
+  // Normalize reh: ر + ڑ → ر
+  str = str.replace(/[رڑ]/g, 'ر');
+  return str;
+}
+
+async function doSearch(){
+  const q=document.getElementById('si').value.trim();
+  const sr=document.getElementById('sr'),rc=document.getElementById('rc');
+  if(!q){sr.innerHTML='';rc.textContent='';return;}
+  
+  const ts=q.toLowerCase().split(' ').filter(Boolean);
+  const matchMode = document.querySelector('input[name="searchMode"]:checked').value;
+
+  let pool=[...idx];
+  if(srchScope==='fan' && selectedAdvFans.size > 0) {
+      pool = pool.filter(b => selectedAdvFans.has(b.category));
+  }
+  if(srchScope==='book' && selectedAdvBooks.size > 0) {
+      pool = pool.filter(b => selectedAdvBooks.has(b.id));
+  }
+
+  rc.textContent='متن میں تلاش جاری ہے...';
+  const searched=[];
+  
+  for(const b of pool){
+    let rawHtml='';
+    if(contentCache[b.id]){
+      rawHtml=contentCache[b.id];
+    }else{
+      try{
+        const r=await fetch('content/'+b.content_file);
+        rawHtml=await r.text();
+        contentCache[b.id]=rawHtml;
+      }catch{continue;}
+    }
     
-    document.getElementById('pdfBar').classList.remove('visible');
-    document.getElementById('mainToolbar').style.display = 'flex';
-    document.getElementById('contentArea').style.display = 'block';
-    document.querySelector('.bottom-nav').style.display = 'flex';
+    let blocks = rawHtml.split(/<p[^>]*>|<h[1-6][^>]*>|<tr[^>]*>|<li[^>]*>/i);
+    let occurrenceCount = 0;
+
+    for(let i=0; i<blocks.length; i++) {
+        if (occurrenceCount >= 40) break;
+
+        let plainText = blocks[i].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        if(plainText.length < 3) continue;
+
+        let lowerText = plainText.toLowerCase();
+        // Normalized versions for Arabic-aware matching
+        let normText = normalizeAr(lowerText);
+        let normQ = normalizeAr(q.toLowerCase());
+        let normTs = ts.map(t => normalizeAr(t));
+        let isMatch = false;
+
+        if(matchMode === 'exact') {
+            isMatch = lowerText.includes(q.toLowerCase()) || normText.includes(normQ);
+        } else if(matchMode === 'all') {
+            isMatch = ts.every(t => lowerText.includes(t)) || normTs.every(t => normText.includes(t));
+        } else if(matchMode === 'any') {
+            isMatch = ts.some(t => lowerText.includes(t)) || normTs.some(t => normText.includes(t));
+        }
+
+        if(isMatch) {
+            let snippetText = getSnippetFromBlock(plainText, ts, matchMode, q);
+            searched.push({
+                ...b,
+                snippet: snippetText,
+                occurrenceIndex: occurrenceCount
+            });
+            occurrenceCount++;
+        }
+    }
+  }
+
+  rc.textContent=searched.length+' نتائج ملے';
+  if(!searched.length){sr.innerHTML='<div class="nores">کوئی نتیجہ نہیں ملا</div>';return;}
+
+  sr.innerHTML=searched.map(b=>{
+    let hl=b.title;
+    const a=auths.find(x=>x.id===b.author_id);
+    const snippet=b.snippet?`<div style="font-size:0.85rem;color:var(--tx);margin-top:10px;line-height:1.8;background:var(--bg2);padding:10px 12px;border-radius:6px;border-right:3px solid var(--gold);">${b.snippet}</div>`:'';
+    let searchPayload = encodeURIComponent(q) + '|' + matchMode + '|' + (b.occurrenceIndex || 0);
+    
+    const titleClass = b.title_font === 'ar' ? 'font-ar' : 'font-ur';
+
+    return`<div class="bitem" onclick="openBook('${b.id}', '${searchPayload}')" style="flex-direction:column;align-items:stretch;padding-bottom:15px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+          <div class="bicon">📖</div>
+          <div class="binfo">
+            <div class="btitle ${titleClass}">${hl}</div>
+            <div class="bauthor">${a?.name||''} — ${b.cn}</div>
+          </div>
+      </div>
+      ${snippet}
+    </div>`;
+  }).join('');
 }
 
-// ===== THEME =====
-function toggleTheme(isDay) {
-    currentTheme = isDay ? 'day' : 'night';
-    localStorage.setItem('tb_theme', currentTheme);
-    applyTheme();
+function renderAuthors(query = ''){
+  let filtered = auths;
+  if(query) {
+      let q = query.toLowerCase();
+      filtered = auths.filter(a => a.name.toLowerCase().includes(q));
+  }
+
+  document.getElementById('alist').innerHTML = filtered.length ? filtered.map(a=>{
+    const n=books.filter(b=>b.author_id===a.id).length;
+    const sc=a.status==='حیات'?'ast-h':'ast-w';
+    const st=a.status==='حیات'?'حیات':`م: ${a.death_year||''}`;
+    return`<div class="aitem" onclick="openAuthor('${a.id}')">
+      <div class="aava">👤</div>
+      <div>
+        <div class="aname">${a.name}</div>
+        <span class="ast ${sc}">${st}</span>
+        <div class="bauthor">${n} کتاب</div>
+      </div>
+    </div>`;
+  }).join('') : '<div class="nores">کوئی مصنف نہیں ملا</div>';
 }
-function applyTheme() {
-    if (currentTheme === 'day') {
-        document.body.setAttribute('data-theme','day');
-        const tog = document.getElementById('themeToggle');
-        if (tog) tog.checked = true;
+
+function openAuthor(aid){
+  const a=auths.find(x=>x.id===aid);
+  document.getElementById('localBookSearch').value = ''; 
+  document.getElementById('bkTitle').textContent=a.name;
+  const f=books.filter(b=>b.author_id===aid);
+  document.getElementById('blist').innerHTML=f.length?f.map(bHTML).join(''):'<div class="nores">اس مصنف کی ابھی کوئی کتاب نہیں</div>';
+  showView('books');
+}
+
+function loadSettings(){
+  const th=localStorage.getItem('theme')||'light';
+  const af=localStorage.getItem('arFont')||'Lotus';
+  const fs2=parseInt(localStorage.getItem('fsize')||'17');
+  const arFs2=parseInt(localStorage.getItem('arFsize')||'13'); 
+  
+  setThemeQuiet(th); setArFontQuiet(af);
+  
+  fsize=fs2;
+  document.documentElement.style.setProperty('--ur-fs', fs2 + 'px');
+  document.body.style.setProperty('--ur-fs', fs2 + 'px');
+  if(document.getElementById('fsizeRange')) document.getElementById('fsizeRange').value=fs2;
+  if(document.getElementById('fsPreview')) document.getElementById('fsPreview').style.fontSize=fs2+'px';
+  
+  setArFontSize(arFs2);
+  if(document.getElementById('arFsizeRange')) document.getElementById('arFsizeRange').value = arFs2;
+}
+
+function setTheme(t,btn){
+  document.body.dataset.theme=t;
+  document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  localStorage.setItem('theme',t);
+}
+function setThemeQuiet(t){
+  document.body.dataset.theme=t;
+  document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
+  const m={'light':'tbLight','dark':'tbDark','night':'tbNight'};
+  document.getElementById(m[t])?.classList.add('active');
+}
+
+function setArFont(f,el){
+  document.querySelectorAll('.font-opt').forEach(x=>x.classList.remove('active'));
+  if(el) el.classList.add('active');
+  localStorage.setItem('arFont',f);
+  document.documentElement.style.setProperty('--far', `"${f}", 'Traditional Arabic', serif`);
+  document.body.style.setProperty('--far', `"${f}", 'Traditional Arabic', serif`);
+}
+function setArFontQuiet(f){
+  document.querySelectorAll('.font-opt').forEach(el=>{
+    if(el.querySelector('.font-opt-preview')?.style.fontFamily?.includes(f))
+      el.classList.add('active');
+    else el.classList.remove('active');
+  });
+  document.documentElement.style.setProperty('--far', `"${f}", 'Traditional Arabic', serif`);
+  document.body.style.setProperty('--far', `"${f}", 'Traditional Arabic', serif`);
+}
+
+function fillAdminSelects(){
+  document.getElementById('nBAuth').innerHTML=auths.map(a=>`<option value="${a.id}">${a.name}</option>`).join('');
+  document.getElementById('nBCat').innerHTML=cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+  fillSub();
+}
+
+function fillSub(){
+  const cid=document.getElementById('nBCat').value;
+  const c=cats.find(x=>x.id===cid);
+  const ss=document.getElementById('nBSub');
+  ss.innerHTML=c?.subcategories?.length?c.subcategories.map(s=>`<option value="${s.id}">${s.name}</option>`).join(''):'<option value="">— نہیں —</option>';
+}
+
+function renderAdminLists(){
+  document.getElementById('catList').innerHTML=cats.map(c=>`
+    <div class="aitm">
+      <div><div class="aitm-name">${c.name}</div>
+      <div class="aitm-sub">${c.id} — ${books.filter(b=>b.category===c.id).length} کتاب</div></div>
+      <div class="aitm-actions">
+        <button class="abtn-edit" onclick="openEdit('cat','${c.id}')">ترمیم</button>
+        <button class="abtn abtn-del" onclick="delCat('${c.id}')">حذف</button>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('authList').innerHTML=auths.map(a=>`
+    <div class="aitm">
+      <div><div class="aitm-name">${a.name}</div>
+      <div class="aitm-sub">${a.status==='وفات'?'م: '+a.death_year:'حیات'}</div></div>
+      <div class="aitm-actions">
+        <button class="abtn-edit" onclick="openEdit('auth','${a.id}')">ترمیم</button>
+        <button class="abtn abtn-del" onclick="delAuth('${a.id}')">حذف</button>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('bookList2').innerHTML=books.map(b=>`
+    <div class="aitm">
+      <div><div class="aitm-name">${b.title}</div>
+      <div class="aitm-sub">${auths.find(a=>a.id===b.author_id)?.name||''}</div></div>
+      <div class="aitm-actions">
+        <button class="abtn-edit" onclick="openEdit('book','${b.id}')">ترمیم</button>
+        <button class="abtn abtn-del" onclick="delBook('${b.id}')">حذف</button>
+      </div>
+    </div>`).join('');
+}
+
+function openEdit(type,id){
+  editType=type;editId=id;
+  const m=document.getElementById('editModal');
+  const mb=document.getElementById('modalBody');
+  if(type==='cat'){
+    const c=cats.find(x=>x.id===id);
+    document.getElementById('modalTitle').textContent='فن کا نام تبدیل کریں';
+    mb.innerHTML=`<label>نام</label><input id="eVal" value="${c.name}" dir="rtl">`;
+  }else if(type==='auth'){
+    const a=auths.find(x=>x.id===id);
+    document.getElementById('modalTitle').textContent='مصنف کی معلومات تبدیل کریں';
+    mb.innerHTML=`
+      <label>نام</label><input id="eVal" value="${a.name}" dir="rtl">
+      <label>حیات/وفات</label>
+      <select id="eSt"><option ${a.status==='حیات'?'selected':''}>حیات</option><option ${a.status==='وفات'?'selected':''}>وفات</option></select>
+      <label>سن وفات</label><input id="eDy" type="number" value="${a.death_year||''}" dir="ltr">`;
+  }else{
+    const b=books.find(x=>x.id===id);
+    document.getElementById('modalTitle').textContent='کتاب کا عنوان تبدیل کریں';
+    
+    mb.innerHTML=`<label>عنوان</label><input id="eVal" value="${b.title}" dir="rtl">
+    
+    <label style="margin-top:10px;">عنوان کا فونٹ (باہر فہرست کے لیے)</label>
+    <select id="eTitleFont" dir="rtl">
+      <option value="ur" ${b.title_font !== 'ar' ? 'selected' : ''}>اردو (جمیل نوری)</option>
+      <option value="ar" ${b.title_font === 'ar' ? 'selected' : ''}>عربی (لوٹس)</option>
+    </select>
+
+    <label style="margin-top:10px;">فہرست کا فونٹ (TOC)</label>
+    <select id="eTocFont" dir="rtl">
+      <option value="auto" ${!b.toc_font || b.toc_font === 'auto' ? 'selected' : ''}>خودکار (زبان کے لحاظ سے)</option>
+      <option value="ur" ${b.toc_font === 'ur' ? 'selected' : ''}>اردو (جمیل نوری)</option>
+      <option value="ar" ${b.toc_font === 'ar' ? 'selected' : ''}>عربی (لوٹس)</option>
+    </select>
+
+    <label style="margin-top:10px;">زبان (اہم فارمیٹنگ)</label>
+    <select id="eBLang" dir="rtl">
+      <option value="ur" ${b.lang === 'ur' ? 'selected' : ''}>اردو (خالص)</option>
+      <option value="ar" ${b.lang === 'ar' ? 'selected' : ''}>عربی (خالص)</option>
+      <option value="ur-ar" ${b.lang === 'ur-ar' ? 'selected' : ''}>اردو + عربی (مکس)</option>
+      <option value="en" ${b.lang === 'en' ? 'selected' : ''}>انگریزی (English)</option>
+      <option value="en-ar" ${b.lang === 'en-ar' ? 'selected' : ''}>انگریزی + عربی (Eng+Arb)</option>
+    </select>
+
+    <label style="display:flex;align-items:center;gap:8px;margin-top:10px;font-weight:bold;cursor:pointer;background:var(--bg2);padding:8px;border-radius:6px;">
+        <input type="checkbox" id="eArbHead" ${b.has_arab_headings ? 'checked' : ''} style="width:18px;height:18px;margin:0;">
+        عنوانات کے لیے 'Traditional Arabic' استعمال کریں
+    </label>`;
+  }
+  m.classList.add('open');
+}
+
+function saveEdit(){
+  if(editType==='cat'){
+    cats.find(x=>x.id===editId).name=document.getElementById('eVal').value.trim();
+  }else if(editType==='auth'){
+    const a=auths.find(x=>x.id===editId);
+    a.name=document.getElementById('eVal').value.trim();
+    a.status=document.getElementById('eSt').value;
+    a.death_year=parseInt(document.getElementById('eDy').value)||null;
+  }else{
+    let b = books.find(x=>x.id===editId);
+    b.title=document.getElementById('eVal').value.trim();
+    b.title_font = document.getElementById('eTitleFont').value; 
+    b.toc_font = document.getElementById('eTocFont').value;
+    b.lang = document.getElementById('eBLang').value; 
+    b.has_arab_headings = document.getElementById('eArbHead').checked;
+  }
+  buildIdx();renderHome();renderAuthors();renderAdminLists();fillSearchSelects();
+  closeModal();toast('تبدیلی محفوظ ہوگئی');
+}
+
+function closeModal(){document.getElementById('editModal').classList.remove('open')}
+
+function addCat(){
+  const n=document.getElementById('nCatName').value.trim();
+  const id=document.getElementById('nCatId').value.trim();
+  if(!n||!id){toast('نام اور ID ضروری ہیں');return;}
+  if(cats.find(c=>c.id===id)){toast('یہ ID پہلے سے موجود ہے');return;}
+  cats.push({id,name:n,subcategories:[]});
+  document.getElementById('nCatName').value='';document.getElementById('nCatId').value='';
+  renderHome();renderAdminLists();fillAdminSelects();fillSearchSelects();toast('فن شامل ہوگیا ✓');
+}
+
+function addAuth(){
+  const n=document.getElementById('nAName').value.trim();
+  if(!n){toast('نام ضروری ہے');return;}
+  const id='a'+Date.now();
+  auths.push({id,name:n,status:document.getElementById('nASt').value,
+    death_year:parseInt(document.getElementById('nADy').value)||null,
+    institution:document.getElementById('nAIns').value.trim(),lang:'ur'});
+  document.getElementById('nAName').value='';document.getElementById('nADy').value='';document.getElementById('nAIns').value='';
+  renderAuthors();renderAdminLists();fillAdminSelects();toast('مصنف شامل ہوگیا ✓');
+}
+
+function addBook(){
+  const t=document.getElementById('nBTitle').value.trim();
+  const f=document.getElementById('nBFile').value.trim();
+  if(!t||!f){toast('عنوان اور فائل نام ضروری ہیں');return;}
+  const id='b'+Date.now();
+  books.push({id,title:t,author_id:document.getElementById('nBAuth').value,
+    category:document.getElementById('nBCat').value,
+    subcategory:document.getElementById('nBSub').value||'',
+    lang:document.getElementById('nBLang').value,
+    title_font:document.getElementById('nBTitleFont').value, 
+    toc_font:document.getElementById('nBTocFont').value,
+    has_arabic:document.getElementById('nBLang').value.includes('ar'),
+    has_arab_headings: document.getElementById('nBArbHead').checked,
+    content_file:f,description:document.getElementById('nBDesc').value.trim(),
+    added:new Date().toISOString().split('T')[0]});
+  
+  document.getElementById('nBTitle').value='';document.getElementById('nBFile').value='';
+  document.getElementById('nBDesc').value=''; document.getElementById('nBArbHead').checked = false;
+  buildIdx();renderHome();renderAdminLists();fillSearchSelects();toast('کتاب شامل ہوگئی ✓');
+}
+
+function delCat(id){if(!confirm('فن حذف کریں؟'))return;cats=cats.filter(c=>c.id!==id);renderHome();renderAdminLists();fillAdminSelects();fillSearchSelects();toast('فن حذف ہوگیا')}
+function delAuth(id){if(!confirm('مصنف حذف کریں؟'))return;auths=auths.filter(a=>a.id!==id);renderAuthors();renderAdminLists();fillAdminSelects();toast('مصنف حذف ہوگیا')}
+function delBook(id){if(!confirm('کتاب حذف کریں؟'))return;books=books.filter(b=>b.id!==id);buildIdx();renderHome();renderAdminLists();fillSearchSelects();toast('کتاب حذف ہوگئی')}
+
+function dlJSON(type){
+  const data=type==='categories'?cats:type==='authors'?auths:books;
+  const fname=type==='categories'?'categories.json':type==='authors'?'authors.json':'books.json';
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fname;a.click();
+  toast(fname+' ڈاؤن لوڈ ہوگئی');
+}
+
+function goHome() {
+    if (history.state && history.state.view !== 'home') {
+        history.back(); 
     } else {
-        document.body.removeAttribute('data-theme');
+        showView('home');
     }
 }
 
-// ===== FONTS =====
-function changeFont(type, step) {
-    if (type === 'urdu') {
-        urduSize = Math.min(44, Math.max(14, urduSize + step));
-        localStorage.setItem('tb_urdu_sz', urduSize);
-    } else {
-        arabicSize = Math.min(54, Math.max(18, arabicSize + step));
-        localStorage.setItem('tb_arabic_sz', arabicSize);
-    }
-    applyFonts();
-}
-function applyFonts() {
-    document.documentElement.style.setProperty('--urdu-size', urduSize + 'px');
-    document.documentElement.style.setProperty('--arabic-size', arabicSize + 'px');
-    const us = document.getElementById('urduSz');
-    const as = document.getElementById('arabicSz');
-    if (us) us.textContent = urduSize;
-    if (as) as.textContent = arabicSize;
+function showView(n, fromPopState = false){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+n)?.classList.add('active');
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('nav-'+n)?.classList.add('active');
+  
+  if(n === 'reader') {
+      document.getElementById('readerSliderWrap').style.display = 'flex';
+  } else {
+      document.getElementById('readerSliderWrap').style.display = 'none';
+      window.scrollTo(0,0);
+  }
+  
+  if(!fromPopState) {
+      if (n === 'home') {
+          history.replaceState({view: 'home'}, '', '#home');
+      } else {
+          if (history.state && history.state.view === 'home') {
+              history.pushState({view: n}, '', '#' + n);
+          } else {
+              history.replaceState({view: n}, '', '#' + n);
+          }
+      }
+  }
 }
 
-// ===== LOADING =====
-function showLoading(show) {
-    const el = document.getElementById('loadingOverlay');
-    if (el) el.classList.toggle('show', show);
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.view) {
+    showView(e.state.view, true);
+  } else {
+    showView('home', true);
+  }
+});
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
 }
-    // PWA Service Worker Registration
+
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker Registered Successfully'))
-            .catch(err => console.log('Service Worker Registration Failed', err));
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      console.log('Service Worker Registered!', reg);
+    }).catch(err => {
+      console.log('Service Worker registration failed: ', err);
     });
+  });
 }
+
+load();
+checkAdminAccess();
 </script>
 </body>
 </html>
